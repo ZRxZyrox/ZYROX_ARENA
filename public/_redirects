@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA Routing Fallback Rule
+# Directs non-asset route requests to index.html with 200 OK for React Router client-side routing
+
+/*    /index.html   200

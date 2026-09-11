@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZYROX ARENA — Esports Tournaments</title>
+    <meta name="description" content="Compete in BGMI, Free Fire, Valorant, FC and Cricket tournaments. Live brackets, verified prize pools, solo and squad registration." />
+    <meta name="theme-color" content="#FFF9F0" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ZYROX ARENA — Esports Tournaments" />
+    <meta property="og:description" content="Compete across BGMI, Free Fire, Valorant, FC and Cricket. Live brackets, verified prize pools." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Preload fonts used above the fold -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!--
+      Security headers (CSP, HSTS, X-Frame-Options, X-Content-Type-Options, etc.)
+      are NOT set here — meta tags can't enforce most of them reliably.
+      They belong on the hosting layer (Cloudflare Pages _headers file or
+      the Worker response). See workers/src/security-headers.ts.
+    -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "zyrox-arena-api",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "itty-router": "^4.0.27",
+    "jose": "^5.6.3",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "wrangler": "^3.60.0",
+    "typescript": "^5.5.4",
+    "@cloudflare/workers-types": "^4.20240718.0"
+  }
+}

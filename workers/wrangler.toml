@@ -1,0 +1,9 @@
+name = "zyrox-arena-api"
+main = "src/index.ts"
+compatibility_date = "2026-07-01"
+
+# [[rate_limiting]] / RATE_LIMITER binding — configure once provisioned:
+# https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
+
+[vars]
+ALLOWED_ORIGIN = "https://your-public-site.com"
