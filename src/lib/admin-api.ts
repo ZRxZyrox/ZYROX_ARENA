@@ -57,24 +57,41 @@ export const adminApi = {
       throw new Error("Please enter both email address and password.");
     }
 
+    // 1. Direct check against environment variables or locally configured admin
+    const isValidLocal = validateLocalAdminCredentials(cleanEmail, cleanPass);
+    if (isValidLocal) {
+      const localToken = "zyrox_admin_token_" + Date.now();
+      adminApi.setSession(localToken);
+
+      // Attempt to sync session with Cloudflare Worker in background
+      adminFetch("/admin/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email: cleanEmail, password: cleanPass }),
+      })
+        .then((res) => {
+          if (res?.token) adminApi.setSession(res.token);
+        })
+        .catch(() => {});
+
+      return { ok: true, adminId: "admin-cf", role: "super_admin", token: localToken };
+    }
+
+    // 2. Call Cloudflare Worker API
     try {
       const res = await adminFetch("/admin/auth/login", {
         method: "POST",
         body: JSON.stringify({ email: cleanEmail, password: cleanPass }),
       });
+
+      if (res?.token) {
+        adminApi.setSession(res.token);
+      }
       return res;
     } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : String(err);
-      
-      // If the worker API gave an explicit response like "Invalid credentials", throw it directly
+
       if (errorMsg.includes("Invalid credentials") || errorMsg.includes("Unauthorized") || errorMsg.includes("401")) {
         throw new Error("Invalid admin email address or password. Access denied.");
-      }
-
-      // Check strictly against locally registered Admin credentials
-      const isValid = validateLocalAdminCredentials(cleanEmail, cleanPass);
-      if (isValid) {
-        return { ok: true, adminId: "admin-hq", role: "SuperAdmin" };
       }
 
       const admin = getRegisteredAdmin();
@@ -82,7 +99,7 @@ export const adminApi = {
         throw new Error("NO_ADMIN_REGISTERED");
       }
 
-      throw new Error("Invalid admin email address or password. Access denied.");
+      throw new Error(errorMsg || "Invalid admin email address or password. Access denied.");
     }
   },
 

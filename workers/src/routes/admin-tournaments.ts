@@ -50,21 +50,37 @@ export async function handleCreateTournament(request: Request, env: Env): Promis
   const session = getSession(request);
   const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
 
+  const isUuid = Boolean(
+    session?.adminId && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(session.adminId)
+  );
+  const insertPayload: Record<string, unknown> = {
+    ...input,
+    status: "draft",
+    published: false,
+  };
+  if (isUuid) {
+    insertPayload.created_by = session?.adminId;
+  }
+
   const { data, error } = await supabase
     .from("tournaments")
-    .insert({ ...input, created_by: session?.adminId, status: "draft", published: false })
+    .insert(insertPayload)
     .select()
     .single();
 
   if (error) return json({ message: "Could not create tournament" }, 500);
 
-  await supabase.from("audit_logs").insert({
-    admin_id: session?.adminId,
-    action: "tournament.create",
-    target_table: "tournaments",
-    target_id: data.id,
-    ip_address: request.headers.get("CF-Connecting-IP"),
-  });
+  try {
+    await supabase.from("audit_logs").insert({
+      admin_id: session?.adminId,
+      action: "tournament.create",
+      target_table: "tournaments",
+      target_id: data.id,
+      ip_address: request.headers.get("CF-Connecting-IP") || request.headers.get("x-forwarded-for"),
+    });
+  } catch {
+    // Non-blocking audit log
+  }
 
   return json({ tournament: data }, 201);
 }
@@ -92,14 +108,18 @@ export async function handleUpdateTournament(request: Request, env: Env, ctx: an
 
   if (error) return json({ message: "Update failed" }, 500);
 
-  await supabase.from("audit_logs").insert({
-    admin_id: session?.adminId,
-    action: isPublishAction ? "tournament.publish_toggle" : "tournament.update",
-    target_table: "tournaments",
-    target_id: id,
-    metadata: updates,
-    ip_address: request.headers.get("CF-Connecting-IP"),
-  });
+  try {
+    await supabase.from("audit_logs").insert({
+      admin_id: session?.adminId,
+      action: isPublishAction ? "tournament.publish_toggle" : "tournament.update",
+      target_table: "tournaments",
+      target_id: id,
+      metadata: updates,
+      ip_address: request.headers.get("CF-Connecting-IP") || request.headers.get("x-forwarded-for"),
+    });
+  } catch {
+    // Non-blocking audit log
+  }
 
   return json({ tournament: data });
 }

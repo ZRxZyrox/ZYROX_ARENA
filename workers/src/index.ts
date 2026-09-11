@@ -29,6 +29,8 @@ export interface Env {
   CASHFREE_SECRET_KEY: string;      // secret
   CASHFREE_WEBHOOK_SECRET: string;  // secret — used to verify webhook signatures
   ALLOWED_ORIGIN: string;           // the public site's origin, for CORS
+  ADMIN_EMAIL?: string;             // Cloudflare variable: master admin email (e.g. admin@zyroxarena.com)
+  ADMIN_PASSWORD?: string;          // Cloudflare variable/secret: master admin password (can be changed anytime in Cloudflare!)
 }
 
 const router = Router();
@@ -80,6 +82,20 @@ router.all("*", () => new Response("Not found", { status: 404 }));
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    if (request.method === "OPTIONS") {
+      const origin = request.headers.get("Origin") || env.ALLOWED_ORIGIN || "*";
+      return new Response(null, {
+        status: 204,
+        headers: {
+          "Access-Control-Allow-Origin": origin,
+          "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With, X-CSRF-Token",
+          "Access-Control-Allow-Credentials": "true",
+          "Access-Control-Max-Age": "86400",
+        },
+      });
+    }
+
     const response = await router.handle(request, env, ctx).catch((err: Error) => {
       console.error("Unhandled error:", err);
       return new Response(JSON.stringify({ message: "Internal error" }), {
@@ -87,6 +103,6 @@ export default {
         headers: { "Content-Type": "application/json" },
       });
     });
-    return securityHeaders(response, env);
+    return securityHeaders(response, env, request);
   },
 };

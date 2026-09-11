@@ -5,7 +5,7 @@ import { ShieldAlert, Gavel, CheckCircle2, Clock, Swords } from "lucide-react";
 
 export default function RulesPage() {
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       <Seo
         title="Tournament Rules & Fair Play Code — ZYROX ARENA"
         description="Official rulebook, anti-cheat enforcement, match protocols, and dispute procedures for all Zyrox Arena tournaments."
@@ -14,20 +14,20 @@ export default function RulesPage() {
 
       <main className="mx-auto max-w-4xl px-6 py-16">
         {/* Header */}
-        <div className="border-b border-charcoal/10 pb-8">
+        <div className="border-b border-charcoal/10 dark:border-white/8 pb-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/15 px-4 py-1.5 text-xs font-bold text-gold-warm">
             <Swords size={14} /> Official Esports Rulebook
           </div>
-          <h1 className="mt-4 font-display text-4xl font-bold uppercase tracking-tight md:text-5xl text-charcoal">
+          <h1 className="mt-4 font-display text-4xl font-bold uppercase tracking-tight md:text-5xl text-charcoal dark:text-white">
             Tournament <span className="text-gradient-warm">Rules</span> &amp; Fair Play
           </h1>
-          <p className="mt-3 text-sm text-charcoal-muted font-medium">
+          <p className="mt-3 text-sm text-charcoal-muted dark:text-[#7A7B88] font-medium">
             Mandatory guidelines for all players &amp; teams participating in BGMI, Free Fire, Valorant, FC, and Cricket tournaments on Zyrox Arena.
           </p>
         </div>
 
         {/* Content sections */}
-        <div className="mt-10 space-y-8 text-sm leading-relaxed text-charcoal font-medium">
+        <div className="mt-10 space-y-8 text-sm leading-relaxed text-charcoal dark:text-[#ECEDF0] font-medium">
           
           {/* Rule 1: Check-in & Punctuality */}
           <section className="glass-card rounded-3xl p-6 md:p-8 space-y-4">

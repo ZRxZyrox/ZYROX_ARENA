@@ -29,7 +29,7 @@ export default function TeamsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       <Seo
         title="Official Approved Registered Teams — ZYROX ARENA"
         description="View all officially verified & approved team rosters participating in live and upcoming tournaments."
@@ -38,21 +38,21 @@ export default function TeamsPage() {
 
       <main className="mx-auto max-w-7xl px-6 py-14">
         {/* Header */}
-        <div className="mb-10 border-b border-charcoal/8 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="mb-10 border-b border-charcoal/8 dark:border-white/8 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-neon/30 bg-neon/15 px-3.5 py-1 text-xs font-bold text-neon uppercase">
               <ShieldCheck size={14} /> Official Verified Rosters
             </span>
-            <h1 className="mt-3 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+            <h1 className="mt-3 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
               Approved <span className="text-gradient-warm">Teams</span>
             </h1>
-            <p className="mt-2 max-w-xl text-sm text-charcoal-muted font-medium">
+            <p className="mt-2 max-w-xl text-sm text-charcoal-muted dark:text-[#7A7B88] font-medium">
               Real-time directory of verified team captains, squad rosters, and slot confirmations for live tournaments.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs text-charcoal-muted font-bold">
+            <span className="font-mono text-xs text-charcoal-muted dark:text-[#7A7B88] font-bold">
               Total Approved Teams: <strong className="text-gold text-sm">{approvedTeams.length}</strong>
             </span>
           </div>
@@ -69,7 +69,7 @@ export default function TeamsPage() {
                 className={`rounded-2xl px-4 py-2 text-xs font-bold transition-all ${
                   selectedGame === g.id
                     ? "bg-neon text-white shadow-glow"
-                    : "glass-card text-charcoal-muted hover:text-charcoal border border-charcoal/10"
+                    : "glass-card text-charcoal-muted dark:text-[#7A7B88] hover:text-charcoal dark:hover:text-white border border-charcoal/10 dark:border-white/10"
                 }`}
               >
                 {g.label}
@@ -85,7 +85,7 @@ export default function TeamsPage() {
               placeholder="Search team or captain..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full rounded-2xl border border-charcoal/10 bg-ivory-warm pl-10 pr-4 py-2 text-xs text-charcoal outline-none focus:border-neon font-medium"
+              className="w-full rounded-2xl border border-charcoal/10 dark:border-white/10 bg-ivory-warm dark:bg-white/8 pl-10 pr-4 py-2 text-xs text-charcoal dark:text-white outline-none focus:border-neon font-medium placeholder:text-charcoal-muted dark:placeholder:text-[#7A7B88]"
             />
           </div>
         </div>
@@ -98,15 +98,15 @@ export default function TeamsPage() {
         ) : filteredTeams.length === 0 ? (
           <div className="glass-card rounded-3xl p-14 text-center space-y-3">
             <Users size={38} className="text-charcoal-muted mx-auto" />
-            <h3 className="font-display text-xl font-bold uppercase text-charcoal">No Approved Teams Found</h3>
-            <p className="text-xs text-charcoal-muted max-w-sm mx-auto">
+            <h3 className="font-display text-xl font-bold uppercase text-charcoal dark:text-white">No Approved Teams Found</h3>
+            <p className="text-xs text-charcoal-muted dark:text-[#7A7B88] max-w-sm mx-auto">
               No registered teams match your search or filter. Registered teams appear automatically after admin approval.
             </p>
           </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredTeams.map((team) => (
-              <div key={team.id} className="glass-card rounded-3xl p-6 space-y-4 hover:shadow-glass-lg transition-all border border-charcoal/10">
+              <div key={team.id} className="glass-card rounded-3xl p-6 space-y-4 hover:shadow-glass-lg transition-all border border-charcoal/10 dark:border-white/8">
                 <div className="flex items-center justify-between">
                   <span className="rounded-full bg-neon/10 border border-neon/20 px-3 py-1 font-mono text-xs font-bold text-neon uppercase">
                     {team.game} • {team.mode}
@@ -117,20 +117,20 @@ export default function TeamsPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-display text-xl font-bold uppercase text-charcoal">{team.team_name}</h3>
-                  <p className="text-xs text-charcoal-muted font-medium mt-0.5">Captain: <strong className="text-charcoal">{team.player_name}</strong></p>
+                  <h3 className="font-display text-xl font-bold uppercase text-charcoal dark:text-white">{team.team_name}</h3>
+                  <p className="text-xs text-charcoal-muted dark:text-[#7A7B88] font-medium mt-0.5">Captain: <strong className="text-charcoal dark:text-white">{team.player_name}</strong></p>
                   <p className="text-[11px] font-mono text-gold-warm mt-1 font-bold">IGN: {team.in_game_id}</p>
                 </div>
 
                 {/* Teammates List */}
                 {team.teammates && team.teammates.length > 0 && (
-                  <div className="pt-3 border-t border-charcoal/8 space-y-2">
-                    <p className="text-[10px] font-mono text-charcoal-muted uppercase font-bold">Squad Roster ({team.teammates.length + 1} Players)</p>
+                  <div className="pt-3 border-t border-charcoal/8 dark:border-white/8 space-y-2">
+                    <p className="text-[10px] font-mono text-charcoal-muted dark:text-[#7A7B88] uppercase font-bold">Squad Roster ({team.teammates.length + 1} Players)</p>
                     <div className="space-y-1.5 text-xs">
                       {team.teammates.map((p, idx) => (
-                        <div key={idx} className="flex items-center justify-between rounded-xl bg-ivory-warm px-3 py-1.5 border border-charcoal/5">
-                          <span className="font-bold text-charcoal text-[11px]">{p.name}</span>
-                          <span className="font-mono text-[10px] text-charcoal-muted">ID: {p.inGameId}</span>
+                        <div key={idx} className="flex items-center justify-between rounded-xl bg-ivory-warm dark:bg-white/5 px-3 py-1.5 border border-charcoal/5 dark:border-white/5">
+                          <span className="font-bold text-charcoal dark:text-white text-[11px]">{p.name}</span>
+                          <span className="font-mono text-[10px] text-charcoal-muted dark:text-[#7A7B88]">ID: {p.inGameId}</span>
                         </div>
                       ))}
                     </div>

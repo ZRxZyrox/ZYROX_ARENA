@@ -20,16 +20,32 @@ const ENROLLED_KEY = "zyrox_admin_2fa_enrolled";
 export const DEFAULT_TOTP_SECRET = "ZYROXARENATOTP2FA";
 
 export function getRegisteredAdmin(): RegisteredAdminAccount | null {
+  const envEmail = (import.meta.env.VITE_ADMIN_EMAIL || "").trim().toLowerCase();
+  const envPass = (import.meta.env.VITE_ADMIN_PASSWORD || "").trim();
+
+  // If env credentials are set, they always take priority so changing .env updates immediately!
+  if (envEmail) {
+    return {
+      email: envEmail,
+      passwordHash: envPass,
+      totpSecret: DEFAULT_TOTP_SECRET,
+      registeredAt: new Date().toISOString(),
+      is2faEnrolled: true,
+    };
+  }
+
   try {
     const raw = localStorage.getItem(ADMIN_CREDENTIALS_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (parsed && typeof parsed.email === "string" && typeof parsed.passwordHash === "string") {
-      return parsed;
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed.email === "string" && typeof parsed.passwordHash === "string") {
+        return parsed;
+      }
     }
   } catch {
     // fallback
   }
+
   return null;
 }
 
@@ -58,11 +74,27 @@ export function registerAdminCredentials(email: string, password: string, totpSe
 }
 
 export function validateLocalAdminCredentials(email: string, password: string): boolean {
-  const admin = getRegisteredAdmin();
-  if (!admin) return false;
-
   const cleanEmail = email.trim().toLowerCase();
   const cleanPass = password.trim();
+
+  const envEmail = (import.meta.env.VITE_ADMIN_EMAIL || "").trim().toLowerCase();
+  const envPass = (import.meta.env.VITE_ADMIN_PASSWORD || "").trim();
+
+  // If environment credentials are configured, they are the authoritative source
+  if (envEmail && envPass) {
+    if (cleanEmail === envEmail && cleanPass === envPass) {
+      try {
+        registerAdminCredentials(cleanEmail, cleanPass);
+      } catch {
+        // ignore
+      }
+      return true;
+    }
+    return false;
+  }
+
+  const admin = getRegisteredAdmin();
+  if (!admin) return false;
 
   return admin.email.toLowerCase() === cleanEmail && admin.passwordHash === cleanPass;
 }

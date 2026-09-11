@@ -40,7 +40,7 @@ export default function TournamentDetailPage() {
   }, [user, registrations, tournament]);
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       {tournament && (
         <Seo
           title={`${tournament.title} — ${tournament.game} Tournament`}
@@ -108,9 +108,8 @@ export default function TournamentDetailPage() {
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`px-5 py-4 text-xs font-bold uppercase tracking-wider transition-colors ${
-                tab === t ? "border-b-2 border-neon text-neon" : "text-charcoal-muted hover:text-charcoal"
-              }`}
+              className={`px-5 py-4 text-xs font-bold uppercase tracking-wider transition-colors ${tab === t ? "border-b-2 border-neon text-neon" : "text-charcoal-muted hover:text-charcoal"
+                }`}
             >
               {t}
             </button>

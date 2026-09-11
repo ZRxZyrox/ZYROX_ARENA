@@ -179,7 +179,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       <Seo title={`Register — ${tournament.title}`} description="Official team registration portal for Zyrox Arena tournaments." />
       <Header />
 

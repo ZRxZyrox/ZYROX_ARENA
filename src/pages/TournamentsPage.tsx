@@ -36,7 +36,7 @@ export default function TournamentsPage() {
   }, [publishedTournaments, query, gameFilter, statusFilter]);
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       <Seo
         title="All Esports Tournaments — ZYROX ARENA"
         description="Browse live and upcoming high-stakes BGMI, Free Fire, Valorant, FC, and Cricket tournaments."
@@ -44,10 +44,10 @@ export default function TournamentsPage() {
       <Header />
 
       <main className="mx-auto max-w-7xl px-6 py-14">
-        <h1 className="font-display text-4xl font-bold uppercase tracking-tight md:text-5xl text-charcoal">
+        <h1 className="font-display text-4xl font-bold uppercase tracking-tight md:text-5xl text-charcoal dark:text-white">
           Esports <span className="text-gradient-warm">Tournaments</span>
         </h1>
-        <p className="mt-2 text-xs text-charcoal-muted font-medium">
+        <p className="mt-2 text-xs text-charcoal-muted dark:text-[#7A7B88] font-medium">
           Filter events by game, format, or registration status. Lock in your team roster and claim cash prizes.
         </p>
 
@@ -57,13 +57,13 @@ export default function TournamentsPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search tournaments…"
-            className="w-full sm:w-64 rounded-2xl glass-card px-4 py-3 text-xs text-charcoal outline-none focus:border-neon font-medium shadow-glass"
+            className="w-full sm:w-64 rounded-2xl glass-card px-4 py-3 text-xs text-charcoal dark:text-white outline-none focus:border-neon font-medium shadow-glass placeholder:text-charcoal-muted dark:placeholder:text-[#7A7B88]"
           />
 
           <button
             onClick={() => setParams(new URLSearchParams())}
             className={`rounded-2xl px-4 py-2.5 text-xs font-bold transition-all ${
-              !gameFilter ? "bg-neon text-white shadow-glow" : "glass-card text-charcoal-muted hover:text-charcoal"
+              !gameFilter ? "bg-neon text-white shadow-glow" : "glass-card text-charcoal-muted dark:text-[#7A7B88] hover:text-charcoal dark:hover:text-white"
             }`}
           >
             All Games
@@ -79,7 +79,7 @@ export default function TournamentsPage() {
                 })
               }
               className={`rounded-2xl px-4 py-2.5 text-xs font-bold uppercase transition-all ${
-                gameFilter === g ? "bg-neon text-white shadow-glow" : "glass-card text-charcoal-muted hover:text-charcoal"
+                gameFilter === g ? "bg-neon text-white shadow-glow" : "glass-card text-charcoal-muted dark:text-[#7A7B88] hover:text-charcoal dark:hover:text-white"
               }`}
             >
               {g}
@@ -89,9 +89,9 @@ export default function TournamentsPage() {
 
         {/* Tournaments Grid */}
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {loading && <p className="text-charcoal-muted text-sm col-span-3">Loading live tournaments…</p>}
+          {loading && <p className="text-charcoal-muted dark:text-[#7A7B88] text-sm col-span-3">Loading live tournaments…</p>}
           {!loading && filteredTournaments.length === 0 && (
-            <div className="col-span-3 py-16 text-center text-charcoal-muted text-sm glass-card rounded-3xl">
+            <div className="col-span-3 py-16 text-center text-charcoal-muted dark:text-[#7A7B88] text-sm glass-card rounded-3xl">
               No tournaments match your filter. Check back soon for new bracket announcements!
             </div>
           )}

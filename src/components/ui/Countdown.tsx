@@ -20,7 +20,7 @@ export default function Countdown({ target }: { target: Date }) {
   }, [target]);
 
   if (time.expired) {
-    return <span className="font-mono text-xs text-charcoal-muted font-bold">Registration closed</span>;
+    return <span className="font-mono text-xs text-charcoal-muted dark:text-[#7A7B88] font-bold">Registration closed</span>;
   }
 
   const boxes = [
@@ -33,9 +33,9 @@ export default function Countdown({ target }: { target: Date }) {
   return (
     <div className="flex gap-2">
       {boxes.map((b) => (
-        <div key={b.l} className="min-w-[48px] rounded-xl glass-card border border-charcoal/10 px-3 py-2 text-center shadow-glass">
-          <b className="block font-mono text-lg font-bold text-charcoal">{String(b.v).padStart(2, "0")}</b>
-          <small className="text-[9px] font-mono text-charcoal-muted font-bold">{b.l}</small>
+        <div key={b.l} className="min-w-[48px] rounded-xl glass-card border border-charcoal/10 dark:border-white/8 px-3 py-2 text-center shadow-glass">
+          <b className="block font-mono text-lg font-bold text-charcoal dark:text-white">{String(b.v).padStart(2, "0")}</b>
+          <small className="text-[9px] font-mono text-charcoal-muted dark:text-[#7A7B88] font-bold">{b.l}</small>
         </div>
       ))}
     </div>

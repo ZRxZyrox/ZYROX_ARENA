@@ -29,7 +29,7 @@ export default function FaqPage() {
   });
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       <Seo
         title="Frequently Asked Questions — ZYROX ARENA"
         description="Find answers to registration, payment verification, match rules, room IDs, and prize payout questions."
@@ -38,12 +38,12 @@ export default function FaqPage() {
 
       <main className="mx-auto max-w-5xl px-6 py-14">
         {/* Header */}
-        <div className="mb-12 border-b border-charcoal/8 pb-6 text-center">
+        <div className="mb-12 border-b border-charcoal/8 dark:border-white/8 pb-6 text-center">
           <p className="font-mono text-xs uppercase text-gold font-bold tracking-widest">Help Center &amp; Support</p>
-          <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+          <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
             Frequently Asked <span className="text-gradient-warm">Questions</span>
           </h1>
-          <p className="mt-2 max-w-md mx-auto text-sm text-charcoal-muted">
+          <p className="mt-2 max-w-md mx-auto text-sm text-charcoal-muted dark:text-[#7A7B88]">
             Everything you need to know about registering, payments, anti-cheat, and match rooms.
           </p>
         </div>
@@ -56,7 +56,7 @@ export default function FaqPage() {
             placeholder="Search questions or keywords..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-2xl glass-card pl-11 pr-5 py-3.5 text-sm text-charcoal outline-none focus:border-neon focus:ring-2 focus:ring-neon/20 shadow-glass"
+            className="w-full rounded-2xl glass-card pl-11 pr-5 py-3.5 text-sm text-charcoal dark:text-white outline-none focus:border-neon focus:ring-2 focus:ring-neon/20 shadow-glass placeholder:text-charcoal-muted dark:placeholder:text-[#7A7B88]"
           />
         </div>
 
@@ -69,7 +69,7 @@ export default function FaqPage() {
               className={`rounded-full px-4 py-2 text-xs font-bold transition-all ${
                 activeCategory === cat
                   ? "bg-neon text-white shadow-glow"
-                  : "glass-card text-charcoal-muted hover:text-charcoal"
+                  : "glass-card text-charcoal-muted dark:text-[#7A7B88] hover:text-charcoal dark:hover:text-white"
               }`}
             >
               {cat}
@@ -88,7 +88,7 @@ export default function FaqPage() {
               >
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 text-left text-sm font-bold text-charcoal hover:text-neon transition-colors"
+                  className="w-full flex items-center justify-between p-5 text-left text-sm font-bold text-charcoal dark:text-white hover:text-neon transition-colors"
                 >
                   <span className="flex items-center gap-3">
                     <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-neon/10 text-neon font-mono text-xs">
@@ -103,7 +103,7 @@ export default function FaqPage() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs text-charcoal-muted leading-relaxed border-t border-charcoal/6">
+                  <div className="px-5 pb-5 pt-1 text-xs text-charcoal-muted dark:text-[#7A7B88] leading-relaxed border-t border-charcoal/6 dark:border-white/6">
                     {f.a}
                   </div>
                 )}
@@ -112,7 +112,7 @@ export default function FaqPage() {
           })}
 
           {filteredFaqs.length === 0 && (
-            <div className="glass-card rounded-2xl p-12 text-center text-charcoal-muted text-sm">
+            <div className="glass-card rounded-2xl p-12 text-center text-charcoal-muted dark:text-[#7A7B88] text-sm">
               No questions found matching "{query}". Contact support at zyroxstudioz@gmail.com for assistance.
             </div>
           )}

@@ -53,7 +53,7 @@ const PAST_RESULTS = [
 
 export default function ResultsPage() {
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       <Seo
         title="Live Tournament Results & Winner Standings — ZYROX ARENA"
         description="Official results, standings, and verified prize payout confirmations for all ZYROX ARENA esports tournaments."
@@ -62,12 +62,12 @@ export default function ResultsPage() {
 
       <main className="mx-auto max-w-7xl px-6 py-14">
         {/* Header */}
-        <div className="mb-12 border-b border-charcoal/8 pb-6">
+        <div className="mb-12 border-b border-charcoal/8 dark:border-white/8 pb-6">
           <p className="font-mono text-xs uppercase text-gold font-bold tracking-widest">Verified Winners &amp; Payouts</p>
-          <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+          <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
             Tournament <span className="text-gradient-warm">Results</span>
           </h1>
-          <p className="mt-2 max-w-xl text-sm text-charcoal-muted">
+          <p className="mt-2 max-w-xl text-sm text-charcoal-muted dark:text-[#7A7B88]">
             Official match outcomes, team standings, and verified 24-hour prize payout receipts.
           </p>
         </div>
@@ -86,12 +86,12 @@ export default function ResultsPage() {
               </div>
 
               <div>
-                <h3 className="font-display text-2xl font-bold uppercase text-charcoal">{res.title}</h3>
-                <p className="text-xs text-charcoal-muted font-mono mt-1">Concluded on {res.date}</p>
+                <h3 className="font-display text-2xl font-bold uppercase text-charcoal dark:text-white">{res.title}</h3>
+                <p className="text-xs text-charcoal-muted dark:text-[#7A7B88] font-mono mt-1">Concluded on {res.date}</p>
               </div>
 
               {/* Podium Breakdown */}
-              <div className="space-y-2.5 pt-2 border-t border-charcoal/8">
+              <div className="space-y-2.5 pt-2 border-t border-charcoal/8 dark:border-white/8">
                 {/* 1st Place */}
                 <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-gold/20 via-gold/10 to-transparent p-3.5 border border-gold/30">
                   <div className="flex items-center gap-3">
@@ -99,7 +99,7 @@ export default function ResultsPage() {
                       <Trophy size={16} />
                     </span>
                     <div>
-                      <p className="text-xs font-bold text-charcoal">{res.winner}</p>
+                      <p className="text-xs font-bold text-charcoal dark:text-white">{res.winner}</p>
                       <p className="text-[10px] text-charcoal-muted uppercase font-mono">1st Place Champion</p>
                     </div>
                   </div>
@@ -108,18 +108,18 @@ export default function ResultsPage() {
 
                 {/* 2nd & 3rd Place */}
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="flex items-center gap-2 rounded-xl bg-ivory-warm p-3 border border-charcoal/8">
-                    <Medal size={15} className="text-charcoal-muted" />
+                  <div className="flex items-center gap-2 rounded-xl bg-ivory-warm dark:bg-white/5 p-3 border border-charcoal/8 dark:border-white/8">
+                    <Medal size={15} className="text-charcoal-muted dark:text-[#7A7B88]" />
                     <div>
-                      <p className="font-bold text-charcoal text-[11px] truncate">{res.runnerUp}</p>
-                      <p className="text-[9px] text-charcoal-muted">2nd Place</p>
+                      <p className="font-bold text-charcoal dark:text-white text-[11px] truncate">{res.runnerUp}</p>
+                      <p className="text-[9px] text-charcoal-muted dark:text-[#7A7B88]">2nd Place</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 rounded-xl bg-ivory-warm p-3 border border-charcoal/8">
+                  <div className="flex items-center gap-2 rounded-xl bg-ivory-warm dark:bg-white/5 p-3 border border-charcoal/8 dark:border-white/8">
                     <Medal size={15} className="text-coral" />
                     <div>
-                      <p className="font-bold text-charcoal text-[11px] truncate">{res.thirdPlace}</p>
-                      <p className="text-[9px] text-charcoal-muted">3rd Place</p>
+                      <p className="font-bold text-charcoal dark:text-white text-[11px] truncate">{res.thirdPlace}</p>
+                      <p className="text-[9px] text-charcoal-muted dark:text-[#7A7B88]">3rd Place</p>
                     </div>
                   </div>
                 </div>
@@ -131,8 +131,8 @@ export default function ResultsPage() {
         {/* CTA */}
         <div className="mt-14 text-center glass-card rounded-3xl p-10 space-y-4">
           <Award size={36} className="text-gold mx-auto" />
-          <h3 className="font-display text-2xl font-bold uppercase text-charcoal">Want Your Team Featured Here?</h3>
-          <p className="text-sm text-charcoal-muted max-w-md mx-auto">
+          <h3 className="font-display text-2xl font-bold uppercase text-charcoal dark:text-white">Want Your Team Featured Here?</h3>
+          <p className="text-sm text-charcoal-muted dark:text-[#7A7B88] max-w-md mx-auto">
             Register for open tournaments today and claim your spot on the official winners leaderboard.
           </p>
           <Link

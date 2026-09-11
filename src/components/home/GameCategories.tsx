@@ -6,13 +6,13 @@ import { ArrowRight } from "lucide-react";
 export default function GameCategories({ games }: { games: GameCategory[] }) {
   return (
     <section className="mx-auto max-w-7xl px-6 py-16">
-      <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-charcoal/8 pb-6">
+      <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-charcoal/8 dark:border-white/8 pb-6">
         <div>
           <p className="font-mono text-xs uppercase text-neon font-bold tracking-widest">Esports Titles</p>
-          <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+          <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
             Pick Your <span className="text-gradient-warm">Battlefield</span>
           </h2>
-          <p className="mt-2 max-w-md text-sm text-charcoal-muted">
+          <p className="mt-2 max-w-md text-sm text-charcoal-muted dark:text-[#7A7B88]">
             Every game title features verified prize brackets, custom room settings, and live scoring.
           </p>
         </div>
@@ -36,8 +36,8 @@ export default function GameCategories({ games }: { games: GameCategory[] }) {
               className="glass-card flex aspect-square flex-col items-center justify-center gap-2 rounded-3xl p-4 text-center transition-all hover:shadow-glass-lg hover:border-neon/40 group"
             >
               <span className="text-3xl transition-transform group-hover:scale-110" aria-hidden>{g.icon}</span>
-              <span className="text-sm font-bold text-charcoal group-hover:text-neon transition-colors">{g.name}</span>
-              <span className="font-mono text-[10px] text-charcoal-muted">{g.eventCount} Live Events</span>
+              <span className="text-sm font-bold text-charcoal dark:text-white group-hover:text-neon transition-colors">{g.name}</span>
+              <span className="font-mono text-[10px] text-charcoal-muted dark:text-[#7A7B88]">{g.eventCount} Live Events</span>
             </Link>
           </motion.div>
         ))}

@@ -6,4 +6,11 @@ compatibility_date = "2026-07-01"
 # https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
 
 [vars]
-ALLOWED_ORIGIN = "https://your-public-site.com"
+ALLOWED_ORIGIN = "*"
+# Set your master admin email here or in Cloudflare dashboard Variables:
+ADMIN_EMAIL = "admin@zyroxarena.com"
+
+# NOTE: Set ADMIN_PASSWORD using Cloudflare Dashboard:
+# Workers & Pages -> zyrox-arena-api -> Settings -> Variables and Secrets -> Add "ADMIN_PASSWORD"
+# Or run: npx wrangler secret put ADMIN_PASSWORD
+# Whenever you want to change your password, simply edit ADMIN_PASSWORD in Cloudflare and save!

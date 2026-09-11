@@ -15,6 +15,11 @@
 export async function csrfCheck(request: Request): Promise<Response | undefined> {
   if (["GET", "HEAD", "OPTIONS"].includes(request.method)) return undefined;
 
+  // Requests authenticated via explicit Authorization Bearer header are immune to browser cross-site CSRF
+  if (request.headers.get("Authorization")?.startsWith("Bearer ")) {
+    return undefined;
+  }
+
   const cookieHeader = request.headers.get("Cookie") || "";
   const cookieToken = /csrf_token=([^;]+)/.exec(cookieHeader)?.[1];
   const headerToken = request.headers.get("X-CSRF-Token");

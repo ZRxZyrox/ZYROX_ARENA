@@ -14,7 +14,14 @@ const sessionStore = new WeakMap<Request, AdminSession>();
 
 export async function requireAdmin(request: Request, env: Env): Promise<Response | undefined> {
   const cookieHeader = request.headers.get("Cookie") || "";
-  const token = /session=([^;]+)/.exec(cookieHeader)?.[1];
+  let token = /session=([^;]+)/.exec(cookieHeader)?.[1];
+
+  if (!token) {
+    const authHeader = request.headers.get("Authorization") || "";
+    if (authHeader.startsWith("Bearer ")) {
+      token = authHeader.substring(7).trim();
+    }
+  }
 
   if (!token) {
     return new Response(JSON.stringify({ message: "Not authenticated" }), { status: 401 });
@@ -22,16 +29,17 @@ export async function requireAdmin(request: Request, env: Env): Promise<Response
 
   try {
     const { payload } = await jwtVerify(token, new TextEncoder().encode(env.JWT_SECRET));
+    const role = (payload.role as string) || "admin";
+    const rawPermissions = (payload.permissions as Record<string, boolean>) ?? {};
+
     sessionStore.set(request, {
       adminId: payload.sub as string,
-      role: payload.role as string,
-      permissions: (payload.permissions as Record<string, boolean>) ?? {},
+      role,
+      permissions: rawPermissions,
     });
     return undefined; // continue
   } catch {
-    // Expired or tampered token — short-lived access tokens mean this is
-    // expected fairly often; the frontend should call the refresh
-    // endpoint and retry rather than treating this as fatal.
+    // Expired or tampered token
     return new Response(JSON.stringify({ message: "Session expired" }), { status: 401 });
   }
 }
@@ -43,5 +51,8 @@ export function getSession(request: Request): AdminSession | undefined {
 // Use inside route handlers for role-based permission checks, e.g.:
 //   if (!hasPermission(request, "payments.verify")) return forbidden();
 export function hasPermission(request: Request, permission: string): boolean {
-  return sessionStore.get(request)?.permissions?.[permission] === true;
+  const session = sessionStore.get(request);
+  if (!session) return false;
+  if (session.role === "super_admin" || session.permissions?.["*"] === true) return true;
+  return session.permissions?.[permission] === true;
 }

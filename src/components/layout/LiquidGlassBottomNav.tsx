@@ -59,13 +59,13 @@ export default function LiquidGlassBottomNav() {
               {isActive && (
                 <motion.div
                   layoutId="liquid-active-pill"
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-neon/20 via-gold/15 to-coral/15 border border-neon/35 shadow-[0_4px_16px_rgba(123,92,255,0.25)]"
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-neon/20 via-gold/15 to-coral/15 dark:from-neon/25 dark:via-neon/10 dark:to-gold/10 border border-neon/35 shadow-[0_4px_16px_rgba(123,92,255,0.25)]"
                   transition={{ type: "spring", stiffness: 450, damping: 35 }}
                 />
               )}
 
               {/* Liquid hover shimmer aura */}
-              <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-white/45 transition-opacity duration-200 pointer-events-none" />
+              <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-white/45 dark:bg-white/8 transition-opacity duration-200 pointer-events-none" />
 
               {/* Icon Container with optional pulse badge */}
               <div className="relative flex items-center justify-center">
@@ -74,7 +74,7 @@ export default function LiquidGlassBottomNav() {
                   className={`transition-all duration-300 ${
                     isActive
                       ? "text-neon scale-110 drop-shadow-[0_2px_8px_rgba(123,92,255,0.45)]"
-                      : "text-charcoal-muted group-hover:text-charcoal group-hover:scale-105"
+                      : "text-charcoal-muted dark:text-[#7A7B88] group-hover:text-charcoal dark:group-hover:text-white group-hover:scale-105"
                   }`}
                 />
 
@@ -89,7 +89,7 @@ export default function LiquidGlassBottomNav() {
               {/* Label */}
               <span
                 className={`relative text-[11px] sm:text-xs font-bold tracking-tight transition-colors duration-200 whitespace-nowrap ${
-                  isActive ? "text-charcoal" : "text-charcoal-muted group-hover:text-charcoal"
+                  isActive ? "text-charcoal dark:text-white" : "text-charcoal-muted dark:text-[#7A7B88] group-hover:text-charcoal dark:group-hover:text-white"
                 }`}
               >
                 {item.label}

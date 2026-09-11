@@ -39,7 +39,7 @@ export default function PaymentStatusPage() {
   }, [orderId]);
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal flex flex-col justify-between">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0] flex flex-col justify-between">
       <Seo title="Payment Verification — ZYROX ARENA" description="Server-verified tournament payment status confirmation." />
       <Header />
 

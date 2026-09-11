@@ -62,7 +62,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       <Seo title="ZYROX ARENA — High-Stakes Esports Tournaments" description="India's premier competitive gaming arena. Compete in BGMI, Free Fire, Valorant, FC, and Cricket for verified cash prizes." />
       <Header />
       <LiveTicker items={ticker} />
@@ -75,10 +75,10 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center mb-14">
               <p className="font-mono text-xs uppercase text-neon font-bold tracking-widest">Platform Guarantees</p>
-              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
                 Why <span className="text-gradient-warm">ZYROX ARENA</span>
               </h2>
-              <p className="mt-3 max-w-xl mx-auto text-charcoal-muted text-sm">Built from the ground up for serious competitive gamers who demand fairness, transparency, and instant payouts.</p>
+              <p className="mt-3 max-w-xl mx-auto text-charcoal-muted dark:text-[#9A9BA8] text-sm">Built from the ground up for serious competitive gamers who demand fairness, transparency, and instant payouts.</p>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {WHY_FEATURES.map((f, i) => {
@@ -92,11 +92,11 @@ export default function HomePage() {
                     transition={{ delay: i * 0.1 }}
                     className="glass-card rounded-3xl p-7 space-y-4 group hover:shadow-glass-lg transition-all"
                   >
-                    <span className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${f.color} border border-white/50`}>
+                    <span className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${f.color} border border-white/50 dark:border-white/10`}>
                       <Icon size={26} className={f.iconColor} />
                     </span>
-                    <h3 className="font-display text-lg font-bold uppercase text-charcoal">{f.title}</h3>
-                    <p className="text-xs text-charcoal-muted leading-relaxed">{f.desc}</p>
+                    <h3 className="font-display text-lg font-bold uppercase text-charcoal dark:text-white">{f.title}</h3>
+                    <p className="text-xs text-charcoal-muted dark:text-[#7A7B88] leading-relaxed">{f.desc}</p>
                   </motion.div>
                 );
               })}
@@ -105,11 +105,11 @@ export default function HomePage() {
         </section>
 
         {/* ═══════════════ How It Works ═══════════════ */}
-        <section className="py-20 bg-ivory-warm">
+        <section className="py-20 bg-ivory-warm dark:bg-[#0D0D1A]">
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center mb-14">
               <p className="font-mono text-xs uppercase text-gold font-bold tracking-widest">Simple 4-Step Process</p>
-              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
                 How It <span className="text-gradient-warm">Works</span>
               </h2>
             </div>
@@ -123,12 +123,12 @@ export default function HomePage() {
                   transition={{ delay: i * 0.12 }}
                   className="glass-card rounded-3xl p-7 relative overflow-hidden group"
                 >
-                  <span className="absolute -top-4 -right-2 font-display text-[80px] font-black text-charcoal/[0.04] group-hover:text-neon/10 transition-colors">
+                  <span className="absolute -top-4 -right-2 font-display text-[80px] font-black text-charcoal/[0.04] dark:text-white/[0.04] group-hover:text-neon/10 transition-colors">
                     {step.step}
                   </span>
                   <span className="inline-block font-mono text-xs text-neon font-bold mb-3">STEP {step.step}</span>
-                  <h3 className="font-display text-xl font-bold uppercase text-charcoal mb-2">{step.title}</h3>
-                  <p className="text-xs text-charcoal-muted leading-relaxed">{step.desc}</p>
+                  <h3 className="font-display text-xl font-bold uppercase text-charcoal dark:text-white mb-2">{step.title}</h3>
+                  <p className="text-xs text-charcoal-muted dark:text-[#7A7B88] leading-relaxed">{step.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -140,14 +140,14 @@ export default function HomePage() {
           <div className="mx-auto max-w-5xl px-6">
             <div className="text-center mb-12">
               <p className="font-mono text-xs uppercase text-coral font-bold tracking-widest">Season Rankings</p>
-              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
                 Top <span className="text-gradient-warm">Performers</span>
               </h2>
             </div>
-            <div className="glass-card rounded-3xl p-6 shadow-glass-lg overflow-hidden border border-charcoal/10">
+            <div className="glass-card rounded-3xl p-6 shadow-glass-lg overflow-hidden border border-charcoal/10 dark:border-white/8">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-charcoal/10 text-xs font-mono text-charcoal-muted uppercase">
+                  <tr className="border-b border-charcoal/10 dark:border-white/8 text-xs font-mono text-charcoal-muted dark:text-[#7A7B88] uppercase">
                     <th className="py-3 px-4 text-left font-bold">Rank</th>
                     <th className="py-3 px-4 text-left font-bold">Team / Player</th>
                     <th className="py-3 px-4 text-left font-bold">Game</th>
@@ -157,21 +157,21 @@ export default function HomePage() {
                 </thead>
                 <tbody>
                   {leaderboard.map((p) => (
-                    <tr key={p.id || p.rank} className="border-b border-charcoal/5 hover:bg-white/5 transition-colors">
+                    <tr key={p.id || p.rank} className="border-b border-charcoal/5 dark:border-white/5 hover:bg-white/5 dark:hover:bg-white/3 transition-colors">
                       <td className="py-4 px-4">
                         <span className={`inline-flex h-8 w-8 items-center justify-center rounded-full font-display text-sm font-bold ${
                           p.rank === 1 ? "bg-gradient-to-br from-gold to-gold-bright text-white shadow-warm" :
-                          p.rank === 2 ? "bg-charcoal/10 text-charcoal" :
-                          p.rank === 3 ? "bg-coral/10 text-coral" : "bg-charcoal/5 text-charcoal-muted"
+                          p.rank === 2 ? "bg-charcoal/10 dark:bg-white/10 text-charcoal dark:text-white" :
+                          p.rank === 3 ? "bg-coral/10 text-coral" : "bg-charcoal/5 dark:bg-white/5 text-charcoal-muted dark:text-[#7A7B88]"
                         }`}>
                           {p.rank}
                         </span>
                       </td>
-                      <td className="py-4 px-4 font-bold text-charcoal">{p.name}</td>
+                      <td className="py-4 px-4 font-bold text-charcoal dark:text-white">{p.name}</td>
                       <td className="py-4 px-4">
                         <span className="rounded-full bg-neon/10 border border-neon/20 px-3 py-1 text-xs font-bold text-neon">{p.game}</span>
                       </td>
-                      <td className="py-4 px-4 font-mono font-bold text-charcoal">{p.wins} Wins</td>
+                      <td className="py-4 px-4 font-mono font-bold text-charcoal dark:text-white">{p.wins} Wins</td>
                       <td className="py-4 px-4 text-right font-display text-lg font-bold text-gold">{p.earnings}</td>
                     </tr>
                   ))}
@@ -186,7 +186,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center mb-12">
               <p className="font-mono text-xs uppercase text-gold font-bold tracking-widest">Player Voices</p>
-              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
                 Trusted By <span className="text-gradient-warm">Gamers Across India</span>
               </h2>
             </div>
@@ -201,14 +201,14 @@ export default function HomePage() {
                   className="glass-card rounded-3xl p-6 space-y-4"
                 >
                   <Quote size={24} className="text-gold/40" />
-                  <p className="text-sm text-charcoal leading-relaxed italic">"{t.quote}"</p>
-                  <div className="flex items-center gap-3 pt-2 border-t border-charcoal/8">
+                  <p className="text-sm text-charcoal dark:text-[#ECEDF0] leading-relaxed italic">"{t.quote}"</p>
+                  <div className="flex items-center gap-3 pt-2 border-t border-charcoal/8 dark:border-white/8">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-neon/20 to-gold/20 border border-neon/20 font-display text-sm font-bold text-neon">
                       {t.name[0]}
                     </span>
                     <div>
-                      <p className="font-bold text-charcoal text-sm">{t.name}</p>
-                      <p className="text-[11px] text-charcoal-muted">{t.role}</p>
+                      <p className="font-bold text-charcoal dark:text-white text-sm">{t.name}</p>
+                      <p className="text-[11px] text-charcoal-muted dark:text-[#7A7B88]">{t.role}</p>
                     </div>
                   </div>
                   <div className="flex gap-0.5">
@@ -223,11 +223,11 @@ export default function HomePage() {
         </section>
 
         {/* ═══════════════ Community & Socials ═══════════════ */}
-        <section className="py-20 bg-ivory-warm">
+        <section className="py-20 bg-ivory-warm dark:bg-[#0D0D1A]">
           <div className="mx-auto max-w-5xl px-6">
             <div className="text-center mb-12">
               <p className="font-mono text-xs uppercase text-neon font-bold tracking-widest">Join the Community</p>
-              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal">
+              <h2 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
                 Connect <span className="text-gradient-warm">With Us</span>
               </h2>
             </div>
@@ -250,8 +250,8 @@ export default function HomePage() {
                     <span className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${s.color} shadow-glass`}>
                       <Icon size={24} className="text-white" />
                     </span>
-                    <h3 className="mt-4 font-display text-lg font-bold uppercase text-charcoal">{s.label}</h3>
-                    <p className="mt-1 text-xs text-charcoal-muted">{s.desc}</p>
+                    <h3 className="mt-4 font-display text-lg font-bold uppercase text-charcoal dark:text-white">{s.label}</h3>
+                    <p className="mt-1 text-xs text-charcoal-muted dark:text-[#7A7B88]">{s.desc}</p>
                   </motion.div>
                 );
               })}
@@ -269,10 +269,10 @@ export default function HomePage() {
                     <Newspaper size={28} className="text-neon" />
                   </span>
                 </div>
-                <h2 className="font-display text-3xl md:text-4xl font-bold uppercase text-charcoal">
+                <h2 className="font-display text-3xl md:text-4xl font-bold uppercase text-charcoal dark:text-white">
                   Never Miss a <span className="text-gradient-warm">Tournament Drop</span>
                 </h2>
-                <p className="max-w-lg mx-auto text-sm text-charcoal-muted">
+                <p className="max-w-lg mx-auto text-sm text-charcoal-muted dark:text-[#9A9BA8]">
                   Get early access to new brackets, exclusive discount codes, and priority registration slots before they go public.
                 </p>
 
@@ -284,7 +284,7 @@ export default function HomePage() {
                       value={subscribeEmail}
                       onChange={(e) => setSubscribeEmail(e.target.value)}
                       placeholder="your-email@example.com"
-                      className="flex-1 rounded-2xl bg-ivory-warm border border-charcoal/10 px-5 py-3.5 text-sm text-charcoal outline-none focus:border-neon focus:ring-2 focus:ring-neon/20 font-medium"
+                      className="flex-1 rounded-2xl bg-ivory-warm dark:bg-white/8 border border-charcoal/10 dark:border-white/12 px-5 py-3.5 text-sm text-charcoal dark:text-white outline-none focus:border-neon focus:ring-2 focus:ring-neon/20 font-medium placeholder:text-charcoal-muted dark:placeholder:text-[#7A7B88]"
                     />
                     <button type="submit" className="shimmer-btn rounded-2xl px-7 py-3.5 text-sm font-bold text-white shadow-glow flex items-center justify-center gap-2 hover:shadow-glass-lg transition-shadow">
                       <Send size={15} /> Subscribe

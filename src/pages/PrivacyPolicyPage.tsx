@@ -5,7 +5,7 @@ import { Lock, Eye, Database, Server, UserCheck } from "lucide-react";
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-ivory text-charcoal">
+    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
       <Seo
         title="Privacy Policy — ZYROX ARENA"
         description="Learn how Zyrox Arena collects, protects, and manages participant data, in-game credentials, and payment transactions."
@@ -14,20 +14,20 @@ export default function PrivacyPolicyPage() {
 
       <main className="mx-auto max-w-4xl px-6 py-16">
         {/* Header */}
-        <div className="border-b border-charcoal/10 pb-8">
+        <div className="border-b border-charcoal/10 dark:border-white/8 pb-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-neon/30 bg-neon/15 px-4 py-1.5 text-xs font-bold text-neon">
             <Lock size={14} /> Data Protection &amp; Privacy
           </div>
-          <h1 className="mt-4 font-display text-4xl font-bold uppercase tracking-tight md:text-5xl text-charcoal">
+          <h1 className="mt-4 font-display text-4xl font-bold uppercase tracking-tight md:text-5xl text-charcoal dark:text-white">
             Privacy <span className="text-gradient-warm">Policy</span>
           </h1>
-          <p className="mt-3 text-sm text-charcoal-muted font-medium">
+          <p className="mt-3 text-sm text-charcoal-muted dark:text-[#7A7B88] font-medium">
             Last updated: July 25, 2026 • Zyrox Arena ("we", "our", "us") is committed to safeguarding your personal data and gaming identity.
           </p>
         </div>
 
         {/* Content sections */}
-        <div className="mt-10 space-y-8 text-sm leading-relaxed text-charcoal font-medium">
+        <div className="mt-10 space-y-8 text-sm leading-relaxed text-charcoal dark:text-[#ECEDF0] font-medium">
           
           {/* Section 1: Data Collection */}
           <section className="glass-card rounded-3xl p-6 md:p-8 space-y-4">

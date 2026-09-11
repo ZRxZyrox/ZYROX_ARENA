@@ -35,13 +35,17 @@ async function setTeamStatus(request: Request, env: Env, ctx: any, status: "appr
   const { data, error } = await supabase.from("teams").update({ status }).eq("id", teamId).select().single();
   if (error) return json({ message: "Update failed" }, 500);
 
-  await supabase.from("audit_logs").insert({
-    admin_id: session?.adminId,
-    action: `team.${status}`,
-    target_table: "teams",
-    target_id: teamId,
-    ip_address: request.headers.get("CF-Connecting-IP"),
-  });
+  try {
+    await supabase.from("audit_logs").insert({
+      admin_id: session?.adminId,
+      action: `team.${status}`,
+      target_table: "teams",
+      target_id: teamId,
+      ip_address: request.headers.get("CF-Connecting-IP") || request.headers.get("x-forwarded-for"),
+    });
+  } catch {
+    // Non-blocking audit log
+  }
 
   return json({ team: data });
 }
@@ -87,14 +91,18 @@ export async function handleVerifyPayment(request: Request, env: Env, ctx: any):
     .select()
     .single();
 
-  await supabase.from("audit_logs").insert({
-    admin_id: session?.adminId,
-    action: "payment.manual_verify",
-    target_table: "registrations",
-    target_id: registrationId,
-    metadata: { result: newStatus },
-    ip_address: request.headers.get("CF-Connecting-IP"),
-  });
+  try {
+    await supabase.from("audit_logs").insert({
+      admin_id: session?.adminId,
+      action: "payment.manual_verify",
+      target_table: "registrations",
+      target_id: registrationId,
+      metadata: { result: newStatus },
+      ip_address: request.headers.get("CF-Connecting-IP") || request.headers.get("x-forwarded-for"),
+    });
+  } catch {
+    // Non-blocking audit log
+  }
 
   return json({ registration: data });
 }
@@ -124,13 +132,17 @@ export async function handleExportRegistrations(request: Request, env: Env, ctx:
 
   const { data: signed } = await supabase.storage.from("admin-exports").createSignedUrl(path, 300); // 5 min
 
-  await supabase.from("audit_logs").insert({
-    admin_id: session?.adminId,
-    action: "registrations.export",
-    target_table: "tournaments",
-    target_id: tournamentId,
-    ip_address: request.headers.get("CF-Connecting-IP"),
-  });
+  try {
+    await supabase.from("audit_logs").insert({
+      admin_id: session?.adminId,
+      action: "registrations.export",
+      target_table: "tournaments",
+      target_id: tournamentId,
+      ip_address: request.headers.get("CF-Connecting-IP") || request.headers.get("x-forwarded-for"),
+    });
+  } catch {
+    // Non-blocking audit log
+  }
 
   return json({ downloadUrl: signed?.signedUrl });
 }
