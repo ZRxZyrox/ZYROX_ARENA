@@ -87,22 +87,22 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ivory dark:bg-[#0A0A14] px-4 py-10 text-charcoal dark:text-[#ECEDF0] transition-colors">
-      <div className="w-full max-w-md rounded-3xl glass-card dark:bg-[#121222]/90 dark:border-white/10 p-8 shadow-glass-xl relative overflow-hidden">
-        {/* Glow ambient background accents */}
-        <div className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-neon/15 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -left-24 h-48 w-48 rounded-full bg-gold/15 blur-3xl" />
+    <div className="flex min-h-screen items-center justify-center bg-black/60 px-4 py-10 text-white transition-colors relative">
+      <div className="w-full max-w-md rounded-3xl glass-card border border-white/20 p-8 shadow-glass-xl relative overflow-hidden backdrop-blur-2xl">
+        {/* Ambient subtle monochrome glow accents */}
+        <div className="pointer-events-none absolute -top-24 -right-24 h-48 w-48 rounded-full bg-white/5 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 h-48 w-48 rounded-full bg-white/5 blur-3xl" />
 
         {/* Header */}
         <div className="flex items-center gap-2.5 mb-1.5 relative z-10">
-          <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-neon via-gold to-coral shadow-warm">
-            <ShieldCheck size={20} className="text-white" />
+          <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-white text-black shadow-glass">
+            <ShieldCheck size={20} className="text-black" />
           </span>
           <div>
-            <h1 className="text-xl font-bold font-display tracking-wide uppercase text-charcoal dark:text-white">
+            <h1 className="text-xl font-bold font-display tracking-wide uppercase text-white">
               Admin Authentication
             </h1>
-            <p className="text-[11px] font-mono text-charcoal-muted dark:text-[#7A7B88] font-bold">
+            <p className="text-[11px] font-mono text-neutral-400 font-bold">
               ZYROX ARENA CONTROL PANEL
             </p>
           </div>
@@ -110,17 +110,17 @@ export default function AdminLoginPage() {
 
         {/* Configured Admin Hint Badge */}
         {configuredEmail && (
-          <div className="my-4 rounded-xl border border-neon/20 bg-neon/5 dark:bg-neon/10 p-2.5 flex items-center justify-between text-xs relative z-10">
-            <div className="flex items-center gap-1.5 text-neon font-semibold text-[11px]">
-              <Sparkles size={13} />
+          <div className="my-4 rounded-xl border border-white/20 bg-white/10 p-2.5 flex items-center justify-between text-xs relative z-10">
+            <div className="flex items-center gap-1.5 text-white font-semibold text-[11px]">
+              <Sparkles size={13} className="text-white" />
               <span>Configured Admin:</span>
-              <strong className="font-mono text-charcoal dark:text-white">{configuredEmail}</strong>
+              <strong className="font-mono text-white">{configuredEmail}</strong>
             </div>
             {email !== configuredEmail && (
               <button
                 type="button"
                 onClick={() => setEmail(configuredEmail)}
-                className="text-[10px] font-bold text-neon hover:underline"
+                className="text-[10px] font-bold text-neutral-300 hover:text-white underline"
               >
                 Use this
               </button>
@@ -130,16 +130,16 @@ export default function AdminLoginPage() {
 
         {/* Error Alert Box */}
         {error && (
-          <div className="my-3 rounded-2xl border border-coral/30 bg-coral/10 p-3.5 text-xs text-coral dark:text-[#FF6B6B] flex items-start gap-2.5 font-bold relative z-10 animate-fade-in">
-            <AlertTriangle size={16} className="flex-shrink-0 mt-0.5" />
+          <div className="my-3 rounded-2xl border border-white/30 bg-white/10 p-3.5 text-xs text-white flex items-start gap-2.5 font-bold relative z-10 animate-fade-in">
+            <AlertTriangle size={16} className="flex-shrink-0 mt-0.5 text-white" />
             <span className="leading-snug">{error}</span>
           </div>
         )}
 
         {/* Success Alert Box */}
         {successMsg && (
-          <div className="my-3 rounded-2xl border border-neon/30 bg-neon/10 p-3.5 text-xs text-neon flex items-start gap-2.5 font-bold relative z-10 animate-fade-in">
-            <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" />
+          <div className="my-3 rounded-2xl border border-white/30 bg-white/15 p-3.5 text-xs text-white flex items-start gap-2.5 font-bold relative z-10 animate-fade-in">
+            <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5 text-white" />
             <span className="leading-snug">{successMsg}</span>
           </div>
         )}
@@ -147,8 +147,8 @@ export default function AdminLoginPage() {
         {/* Login Form */}
         <form onSubmit={handleLogin} className="space-y-4 mt-4 relative z-10">
           <div>
-            <label className="block text-xs font-mono text-charcoal-muted dark:text-[#A0A1B0] mb-1.5 flex items-center gap-1 font-bold">
-              <Mail size={13} className="text-gold" /> Admin Email Address *
+            <label className="block text-xs font-mono text-neutral-400 mb-1.5 flex items-center gap-1 font-bold">
+              <Mail size={13} className="text-neutral-400" /> Admin Email Address *
             </label>
             <input
               type="email"
@@ -157,13 +157,13 @@ export default function AdminLoginPage() {
               placeholder="admin@zyroxarena.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-2xl border border-charcoal/10 dark:border-white/10 bg-ivory-warm dark:bg-white/5 px-4 py-3 text-xs text-charcoal dark:text-white outline-none focus:border-neon font-medium transition-all"
+              className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-xs text-white outline-none focus:border-white font-medium transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono text-charcoal-muted dark:text-[#A0A1B0] mb-1.5 flex items-center gap-1 font-bold">
-              <Lock size={13} className="text-gold" /> Admin Password *
+            <label className="block text-xs font-mono text-neutral-400 mb-1.5 flex items-center gap-1 font-bold">
+              <Lock size={13} className="text-neutral-400" /> Admin Password *
             </label>
             <div className="relative">
               <input
@@ -172,12 +172,12 @@ export default function AdminLoginPage() {
                 placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-2xl border border-charcoal/10 dark:border-white/10 bg-ivory-warm dark:bg-white/5 px-4 py-3 pr-11 text-xs text-charcoal dark:text-white outline-none focus:border-neon font-medium transition-all"
+                className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 pr-11 text-xs text-white outline-none focus:border-white font-medium transition-all"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-charcoal-muted dark:text-[#7A7B88] hover:text-charcoal dark:hover:text-white transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white transition-colors"
                 title={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
@@ -188,11 +188,11 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full shimmer-btn rounded-2xl py-3.5 text-xs font-bold text-white shadow-glow transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 mt-4 flex items-center justify-center gap-2"
+            className="w-full rounded-2xl py-3.5 text-xs font-black uppercase tracking-wider bg-white text-black hover:bg-neutral-200 transition-all shadow-glow flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 mt-4"
           >
             {loading ? (
               <>
-                <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent" />
                 <span>Verifying credentials...</span>
               </>
             ) : (
@@ -202,12 +202,12 @@ export default function AdminLoginPage() {
         </form>
 
         {/* Footer Actions */}
-        <div className="mt-6 pt-4 border-t border-charcoal/8 dark:border-white/8 flex items-center justify-between text-[11px] text-charcoal-muted dark:text-[#7A7B88] relative z-10">
+        <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] text-neutral-400 relative z-10">
           <span>Variables in Cloudflare / .env</span>
           <button
             type="button"
             onClick={handleResetCache}
-            className="flex items-center gap-1 hover:text-charcoal dark:hover:text-white transition-colors font-semibold"
+            className="flex items-center gap-1 hover:text-white transition-colors font-semibold"
             title="Wipe stale credentials stored in browser localStorage"
           >
             <RotateCcw size={11} />

@@ -3,19 +3,15 @@ import { Link } from "react-router-dom";
 import Countdown from "@/components/ui/Countdown";
 import type { FeaturedTournament } from "@/types/tournament";
 import { useSiteSettings } from "@/lib/siteSettingsStore";
-import { Zap, Users, Trophy, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface Props {
   featured?: FeaturedTournament;
   stats?: { liveEvents?: string | number; players?: string; paidOut?: string };
 }
 
-export default function Hero({ featured, stats }: Props) {
+export default function Hero({ featured }: Props) {
   const { settings } = useSiteSettings();
-
-  const liveEvents = stats?.liveEvents ?? settings.liveEventsCount;
-  const players = stats?.players ?? settings.activePlayersCount;
-  const paidOut = stats?.paidOut ?? settings.paidOutAmount;
 
   // Box data source: Admin custom Hero Box vs Featured tournament fallback
   const isCustomBox = settings.heroBoxEnabled;
@@ -32,31 +28,29 @@ export default function Hero({ featured, stats }: Props) {
     : (featured?.registrationCloses || new Date(Date.now() + 3 * 86400000));
 
   return (
-    <section className="relative min-h-[92vh] flex items-center overflow-hidden">
-      {/* Animated mesh gradient background */}
-      <div className="absolute inset-0 mesh-gradient" />
-      <div className="absolute top-20 right-1/4 h-80 w-80 rounded-full bg-neon/6 dark:bg-neon/10 blur-3xl animate-float-slow" />
-      <div className="absolute bottom-20 left-1/4 h-64 w-64 rounded-full bg-gold/8 dark:bg-gold/12 blur-3xl animate-float" />
-      <div className="absolute top-1/3 right-10 h-48 w-48 rounded-full bg-coral/6 dark:bg-coral/8 blur-3xl animate-float-slow" />
-
-      <div className="relative mx-auto max-w-7xl w-full px-6 py-20 grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
-        {/* Left — Text Content */}
+    <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden">
+      <div className="relative mx-auto max-w-7xl w-full px-6 pt-20 pb-8 grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
+        {/* Left — Text Content with Ancient Royal Typography & Liquid Glass */}
         <div className="space-y-8">
+          {/* Announcement badge */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full glass-card px-4 py-2 text-xs font-bold text-neon"
+            className="inline-flex items-center gap-2 rounded-full glass-card border border-white/20 px-4 py-1.5 text-xs font-bold text-white shadow-glass"
           >
-            <span className="h-2 w-2 rounded-full bg-neon animate-pulse-live" />
-            {settings.announcementBanner}
+            <span className="h-2 w-2 rounded-full bg-white animate-pulse-live shadow-[0_0_8px_#fff]" />
+            <span className="font-mono tracking-[0.1em] uppercase text-neutral-200 font-bold text-[11px]">
+              {settings.announcementBanner}
+            </span>
           </motion.div>
 
+          {/* Headline with Ancient Royal Script in natural casing */}
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.92] text-charcoal dark:text-white"
+            className="font-scripture text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.02] tracking-wide text-white relative"
           >
             {settings.heroHeadline.includes("Arena") ? (
               <>
@@ -69,113 +63,123 @@ export default function Hero({ featured, stats }: Props) {
             )}
           </motion.h1>
 
+          {/* Subheadline with soothing readability */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-lg text-base md:text-lg leading-relaxed text-charcoal-muted dark:text-[#9A9BA8] font-medium"
+            className="max-w-lg text-base md:text-lg leading-relaxed text-neutral-300 font-normal tracking-wide"
           >
             {settings.heroSubheadline}
           </motion.p>
 
+          {/* Royal Action CTAs (120 FPS Smooth) */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-wrap gap-4"
           >
-            <motion.div whileHover={{ y: -3, scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+            <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
                 to="/tournaments"
-                className="flex items-center gap-2 shimmer-btn rounded-2xl px-8 py-4 text-sm font-bold text-white shadow-glow"
+                className="royal-btn royal-btn-primary flex items-center gap-2 px-7 py-3.5 text-xs font-bold"
               >
-                Browse Tournaments <ArrowRight size={16} />
+                <span>Browse Tournaments</span>
+                <ArrowRight size={15} />
               </Link>
             </motion.div>
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
               <Link
                 to="/teams"
-                className="flex items-center gap-2 glass-card rounded-2xl px-8 py-4 text-sm font-semibold text-charcoal dark:text-white hover:shadow-glass-lg transition-all"
+                className="royal-btn royal-btn-secondary flex items-center gap-2 px-7 py-3.5 text-xs font-bold"
               >
-                Approved Teams
+                <span>Approved Teams</span>
               </Link>
             </motion.div>
           </motion.div>
-
-          {/* Stats Row */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.55 }}
-            className="flex flex-wrap gap-8 pt-4"
-          >
-            {[
-              { num: liveEvents, label: "Live Events", icon: Zap, color: "text-coral" },
-              { num: players, label: "Registered Players", icon: Users, color: "text-neon" },
-              { num: paidOut, label: "Paid Out", icon: Trophy, color: "text-gold" },
-            ].map((s) => {
-              const Icon = s.icon;
-              return (
-                <div key={s.label} className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/70 dark:bg-white/8 backdrop-blur-xl border border-white/90 dark:border-white/12 shadow-glass">
-                    <Icon size={18} className={s.color} />
-                  </span>
-                  <div>
-                    <span className="block font-display text-2xl font-bold text-charcoal dark:text-white">{s.num}</span>
-                    <span className="text-[11px] uppercase tracking-wider text-charcoal-muted dark:text-[#7A7B88] font-mono">{s.label}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </motion.div>
         </div>
 
-        {/* Right — Static Hero Box / Card */}
+        {/* Right — Ancient Royal Liquid Glass Card (Smooth 120 FPS) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35 }}
           className="relative"
         >
-          {/* Glow ring */}
-          <div className="absolute -inset-3 rounded-[32px] bg-gradient-to-br from-neon/20 via-gold/15 to-coral/20 dark:from-neon/15 dark:via-neon/8 dark:to-gold/10 blur-xl animate-float-slow" />
+          {/* Subtle monochrome ambient glow */}
+          <div className="absolute -inset-2 rounded-[32px] bg-white/10 blur-xl animate-float-slow" />
 
-          <div className="relative glass-card rounded-[28px] p-7 shadow-glass-xl animate-float-slow">
-            {/* Featured badge */}
-            <span className="absolute -top-3 left-7 rounded-full bg-gradient-to-r from-neon to-neon-deep px-4 py-1.5 font-mono text-[10px] font-bold tracking-wider text-white shadow-glow uppercase">
+          {/* Ancient Royal Liquid Glass Card */}
+          <div className="glass-card liquid-glass-specular rounded-[28px] p-8 shadow-glass-xl animate-float-slow fps-120 border border-white/20 relative">
+            {/* Top specular highlight rim */}
+            <div className="pointer-events-none absolute inset-x-8 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+            {/* Featured title badge on top of card */}
+            <span className="absolute -top-3.5 left-7 rounded-full bg-white px-4 py-1 font-mono text-[10px] font-bold tracking-[0.15em] text-black shadow-[0_0_15px_rgba(255,255,255,0.4)] uppercase z-20 select-none">
               {boxBadge}
             </span>
 
-            <div className="mt-3 mb-5 flex items-center justify-between">
-              <span className="text-eyebrow font-mono text-xs text-charcoal-muted dark:text-[#7A7B88] font-bold">{boxSubtitle}</span>
-              <span className="flex items-center gap-1.5 font-mono text-[11px] text-neon font-bold">
-                <span className="h-2 w-2 animate-pulse-live rounded-full bg-neon" />
+            <div className="mt-3 mb-5 flex items-center justify-between border-b border-white/10 pb-3">
+              <span className="font-mono text-xs text-neutral-400 font-semibold tracking-wider uppercase">
+                {boxSubtitle}
+              </span>
+              <span className="flex items-center gap-1.5 font-mono text-[11px] text-neutral-200 font-semibold">
+                <span className="h-2 w-2 animate-pulse-live rounded-full bg-white shadow-[0_0_8px_#fff]" />
                 {boxStatusText}
               </span>
             </div>
 
-            <h3 className="mb-6 font-display text-3xl sm:text-4xl font-bold leading-none text-charcoal dark:text-white">
+            {/* Tournament Title */}
+            <h3 className="mb-6 font-display text-2xl sm:text-3xl font-bold leading-snug text-white">
               {boxTitle}
             </h3>
 
-            <Countdown target={boxCountdownTarget} />
+            {/* Smooth Liquid Glass Countdown */}
+            <div className="mb-4">
+              <Countdown target={boxCountdownTarget} />
+            </div>
 
-            <div className="mt-6 flex items-end justify-between border-t border-charcoal/8 dark:border-white/8 pt-5">
+            <div className="mt-6 flex items-end justify-between border-t border-white/10 pt-5">
               <div>
-                <span className="block font-display text-4xl font-bold text-gradient-warm">
+                <span className="block font-display text-3xl font-black text-white tracking-tight">
                   {boxPrizePool}
                 </span>
-                <span className="text-[10px] uppercase tracking-wider text-charcoal-muted dark:text-[#7A7B88] font-mono font-bold">Prize Pool</span>
+                <span className="text-[10px] uppercase tracking-[0.15em] text-neutral-400 font-mono font-semibold">Prize Pool</span>
               </div>
               <Link
                 to={boxCtaUrl}
-                className="rounded-xl bg-gradient-to-r from-neon to-neon-deep px-5 py-3 text-xs font-bold text-white shadow-glow hover:brightness-110 transition-all flex items-center gap-1"
+                className="royal-btn royal-btn-primary px-5 py-3 text-xs font-bold flex items-center gap-1"
               >
                 {boxCtaText}
               </Link>
             </div>
           </div>
         </motion.div>
+      </div>
+
+      {/* Full-width responsive Uiverse card spanning from left to right of website */}
+      <div className="relative mx-auto max-w-7xl w-full px-6 pt-2 pb-12">
+        <div className="uiverse-zyrox-card fps-120 w-full">
+          <b />
+          <div className="card-media flex flex-col items-center justify-center text-white select-none">
+            <span className="font-display text-2xl sm:text-3xl font-black tracking-widest text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.9)]">
+              ZYROX
+            </span>
+            <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] font-bold text-white/70 mt-0.5">
+              STUDIOZ
+            </span>
+          </div>
+          <div className="card-content select-none">
+            <div className="card-title">
+              <span>NEVER SETTLE</span>
+              EVER EVOLVING
+              <div className="text-[9px] sm:text-[10px] text-white/90 font-mono tracking-widest mt-1 font-bold">
+                ZYROX STUDIOZ
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

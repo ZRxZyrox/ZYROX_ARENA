@@ -22,17 +22,17 @@ const NAV = [
 
 export default function AdminLayout() {
   return (
-    <div className="flex min-h-screen bg-ivory text-charcoal">
+    <div className="flex min-h-screen bg-transparent text-white">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-charcoal/10 bg-ivory-warm/80 p-5 flex flex-col justify-between flex-shrink-0">
+      <aside className="w-64 border-r border-white/10 bg-black/80 backdrop-blur-xl p-5 flex flex-col justify-between flex-shrink-0">
         <div>
           <div className="flex items-center gap-2.5 mb-8">
-            <span className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-neon via-gold to-coral shadow-warm">
-              <ShieldCheck size={18} className="text-white" />
+            <span className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-white text-black shadow-glow">
+              <ShieldCheck size={18} />
             </span>
             <div>
-              <div className="font-display text-base tracking-wide text-charcoal uppercase font-bold">ZYROX <span className="text-gradient-warm">HQ</span></div>
-              <div className="text-[10px] font-mono text-neon font-bold uppercase">Admin Control Panel</div>
+              <div className="font-display text-base tracking-wide text-white uppercase font-bold">ZYROX <span className="text-gradient-warm">HQ</span></div>
+              <div className="text-[10px] font-mono text-white font-bold uppercase">Admin Control Panel</div>
             </div>
           </div>
 
@@ -45,10 +45,10 @@ export default function AdminLayout() {
                   to={item.to}
                   end={item.exact}
                   className={({ isActive }) =>
-                    `flex items-center gap-2.5 rounded-2xl px-3.5 py-3 text-xs font-bold transition-all ${
+                    `flex items-center gap-2.5 rounded-2xl px-3.5 py-3 text-xs font-bold uppercase tracking-wider transition-all ${
                       isActive
-                        ? "bg-neon text-white shadow-glow"
-                        : "text-charcoal-muted hover:bg-white/10 hover:text-charcoal border border-transparent"
+                        ? "bg-white text-black font-black shadow-glow"
+                        : "text-neutral-400 hover:bg-white/10 hover:text-white border border-transparent"
                     }`
                   }
                 >
@@ -60,18 +60,18 @@ export default function AdminLayout() {
           </nav>
         </div>
 
-        <div className="space-y-3 pt-6 border-t border-charcoal/10">
+        <div className="space-y-3 pt-6 border-t border-white/10">
           <Link
             to="/"
             target="_blank"
-            className="flex items-center justify-between rounded-2xl border border-charcoal/10 glass-card px-3.5 py-2.5 text-xs font-bold text-charcoal hover:border-neon transition-colors"
+            className="flex items-center justify-between rounded-2xl border border-white/15 glass-card px-3.5 py-2.5 text-xs font-bold text-white hover:bg-white/10 transition-colors"
           >
             <span>View Live Website</span>
             <ExternalLink size={13} />
           </Link>
           <button
             onClick={() => adminApi.logout().then(() => (window.location.href = `/${ADMIN_PATH}/login`))}
-            className="w-full flex items-center gap-2 rounded-2xl border border-coral/30 bg-coral/10 px-3.5 py-2.5 text-xs font-bold text-coral hover:bg-coral/20 transition-colors text-left"
+            className="w-full flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-3.5 py-2.5 text-xs font-bold text-white hover:bg-white hover:text-black transition-colors text-left"
           >
             <LogOut size={14} />
             <span>Sign Out Admin</span>

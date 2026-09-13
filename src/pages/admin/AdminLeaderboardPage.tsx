@@ -10,6 +10,7 @@ export default function AdminLeaderboardPage() {
   const [saved, setSaved] = useState(false);
 
   // Form state
+  const [rank, setRank] = useState(1);
   const [name, setName] = useState("");
   const [wins, setWins] = useState(10);
   const [earnings, setEarnings] = useState("₹1,00,000");
@@ -17,6 +18,7 @@ export default function AdminLeaderboardPage() {
 
   const openNewModal = () => {
     setEditingId(null);
+    setRank(leaderboard.length + 1);
     setName("");
     setWins(10);
     setEarnings("₹1,00,000");
@@ -26,6 +28,7 @@ export default function AdminLeaderboardPage() {
 
   const openEditModal = (item: LeaderboardItem) => {
     setEditingId(item.id);
+    setRank(item.rank);
     setName(item.name);
     setWins(item.wins);
     setEarnings(item.earnings);
@@ -38,22 +41,28 @@ export default function AdminLeaderboardPage() {
     if (!name.trim()) return;
 
     if (editingId) {
-      const updated = leaderboard.map((item) =>
-        item.id === editingId ? { ...item, name, wins, earnings, game } : item
+      let updated = leaderboard.map((item) =>
+        item.id === editingId ? { ...item, rank, name: name.trim(), wins, earnings: earnings.trim(), game: game.trim() } : item
       );
+      // Sort by rank and re-index
+      updated.sort((a, b) => a.rank - b.rank);
+      updated = updated.map((item, idx) => ({ ...item, rank: idx + 1 }));
       updateLeaderboard(updated);
       logAdminAction("leaderboard.update", "season_leaderboard", editingId);
     } else {
       const newId = "lb-" + Date.now();
       const newItem: LeaderboardItem = {
         id: newId,
-        rank: leaderboard.length + 1,
+        rank: rank || (leaderboard.length + 1),
         name: name.trim(),
         wins,
         earnings: earnings.trim(),
-        game,
+        game: game.trim(),
       };
-      updateLeaderboard([...leaderboard, newItem]);
+      let updated = [...leaderboard, newItem];
+      updated.sort((a, b) => a.rank - b.rank);
+      updated = updated.map((item, idx) => ({ ...item, rank: idx + 1 }));
+      updateLeaderboard(updated);
       logAdminAction("leaderboard.create", "season_leaderboard", name);
     }
 
@@ -224,20 +233,32 @@ export default function AdminLeaderboardPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div>
+                  <label className="block text-xs font-mono font-bold text-charcoal-muted mb-1">Rank # *</label>
+                  <input
+                    type="number" required min={1} max={99} value={rank}
+                    onChange={(e) => setRank(Number(e.target.value))}
+                    className="w-full rounded-2xl border border-charcoal/10 bg-ivory-warm px-3 py-2.5 text-xs text-charcoal outline-none focus:border-neon font-bold"
+                  />
+                </div>
+
                 <div>
                   <label className="block text-xs font-mono font-bold text-charcoal-muted mb-1">Game *</label>
-                  <select
-                    value={game}
+                  <input
+                    type="text" required list="game-presets" placeholder="BGMI / Valorant" value={game}
                     onChange={(e) => setGame(e.target.value)}
                     className="w-full rounded-2xl border border-charcoal/10 bg-ivory-warm px-3 py-2.5 text-xs text-charcoal outline-none focus:border-neon font-bold"
-                  >
-                    <option value="BGMI">BGMI</option>
-                    <option value="Valorant">Valorant</option>
-                    <option value="Free Fire">Free Fire</option>
-                    <option value="FC">FC</option>
-                    <option value="Cricket">Cricket</option>
-                  </select>
+                  />
+                  <datalist id="game-presets">
+                    <option value="BGMI" />
+                    <option value="Valorant" />
+                    <option value="Free Fire" />
+                    <option value="FC" />
+                    <option value="Cricket" />
+                    <option value="CODM" />
+                    <option value="CS2" />
+                  </datalist>
                 </div>
 
                 <div>

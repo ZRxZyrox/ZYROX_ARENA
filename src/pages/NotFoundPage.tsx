@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer";
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0] flex flex-col justify-between">
+    <div className="min-h-screen bg-transparent text-charcoal dark:text-[#ECEDF0] flex flex-col justify-between relative">
       <Header />
       <div className="my-auto py-20 text-center px-6">
         <div className="glass-card rounded-3xl p-12 max-w-md mx-auto space-y-4 shadow-glass-xl">

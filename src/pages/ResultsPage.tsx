@@ -53,73 +53,82 @@ const PAST_RESULTS = [
 
 export default function ResultsPage() {
   return (
-    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
+    <div className="min-h-screen bg-transparent text-charcoal dark:text-[#ECEDF0] transition-colors relative">
       <Seo
         title="Live Tournament Results & Winner Standings — ZYROX ARENA"
         description="Official results, standings, and verified prize payout confirmations for all ZYROX ARENA esports tournaments."
       />
       <Header />
 
-      <main className="mx-auto max-w-7xl px-6 py-14">
+      <main className="mx-auto max-w-7xl px-6 py-14 safe-bottom-dock">
         {/* Header */}
-        <div className="mb-12 border-b border-charcoal/8 dark:border-white/8 pb-6">
-          <p className="font-mono text-xs uppercase text-gold font-bold tracking-widest">Verified Winners &amp; Payouts</p>
-          <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
+        <div className="mb-12 border-b border-white/10 pb-6">
+          <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase text-white font-bold tracking-widest bg-white/10 px-3.5 py-1 rounded-full border border-white/20">
+            <Trophy size={13} className="text-white" /> Verified Winners &amp; Payouts
+          </span>
+          <h1 className="mt-3 font-display text-4xl md:text-5xl font-bold uppercase text-white">
             Tournament <span className="text-gradient-warm">Results</span>
           </h1>
-          <p className="mt-2 max-w-xl text-sm text-charcoal-muted dark:text-[#7A7B88]">
-            Official match outcomes, team standings, and verified 24-hour prize payout receipts.
+          <p className="mt-2 max-w-xl text-sm text-neutral-400 font-medium">
+            Official match outcomes, podium standings, and verified 24-hour prize payout distribution receipts.
           </p>
         </div>
 
         {/* Winner Highlights Grid */}
         <div className="grid gap-6 md:grid-cols-2">
           {PAST_RESULTS.map((res) => (
-            <div key={res.id} className="glass-card rounded-3xl p-7 space-y-5 hover:shadow-glass-lg transition-all">
+            <div
+              key={res.id}
+              className="glass-card rounded-3xl p-7 space-y-5 hover:shadow-glass-lg transition-all border border-white/10"
+            >
               <div className="flex items-center justify-between">
-                <span className="rounded-full bg-neon/10 border border-neon/20 px-3 py-1 font-mono text-xs font-bold text-neon uppercase">
+                <span className="rounded-full bg-white/10 border border-white/20 px-3 py-1 font-mono text-xs font-bold text-white uppercase">
                   {res.game}
                 </span>
-                <span className="flex items-center gap-1 font-mono text-xs text-neon-mint font-bold bg-neon-mint/10 border border-neon-mint/20 px-3 py-1 rounded-full">
-                  <CheckCircle2 size={13} /> {res.status}
+                <span className="flex items-center gap-1 font-mono text-xs text-white font-bold bg-white/15 border border-white/25 px-3 py-1 rounded-full">
+                  <CheckCircle2 size={13} className="text-white" /> {res.status}
                 </span>
               </div>
 
               <div>
-                <h3 className="font-display text-2xl font-bold uppercase text-charcoal dark:text-white">{res.title}</h3>
-                <p className="text-xs text-charcoal-muted dark:text-[#7A7B88] font-mono mt-1">Concluded on {res.date}</p>
+                <h3 className="font-display text-2xl font-bold uppercase text-white">{res.title}</h3>
+                <p className="text-xs text-neutral-400 font-mono mt-1 font-medium">
+                  Concluded on {res.date}
+                </p>
               </div>
 
               {/* Podium Breakdown */}
-              <div className="space-y-2.5 pt-2 border-t border-charcoal/8 dark:border-white/8">
+              <div className="space-y-2.5 pt-2 border-t border-white/10">
                 {/* 1st Place */}
-                <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-gold/20 via-gold/10 to-transparent p-3.5 border border-gold/30">
+                <div className="flex items-center justify-between rounded-2xl bg-white/10 p-3.5 border border-white/20">
                   <div className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gold text-white font-bold">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white text-black font-black shadow-glow">
                       <Trophy size={16} />
                     </span>
                     <div>
-                      <p className="text-xs font-bold text-charcoal dark:text-white">{res.winner}</p>
-                      <p className="text-[10px] text-charcoal-muted uppercase font-mono">1st Place Champion</p>
+                      <p className="text-xs font-bold text-white">{res.winner}</p>
+                      <p className="text-[10px] text-neutral-400 uppercase font-mono font-bold">
+                        1st Place Champion
+                      </p>
                     </div>
                   </div>
-                  <span className="font-display text-lg font-bold text-gold">{res.prizePool}</span>
+                  <span className="font-display text-lg font-black text-white">{res.prizePool}</span>
                 </div>
 
                 {/* 2nd & 3rd Place */}
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="flex items-center gap-2 rounded-xl bg-ivory-warm dark:bg-white/5 p-3 border border-charcoal/8 dark:border-white/8">
-                    <Medal size={15} className="text-charcoal-muted dark:text-[#7A7B88]" />
+                  <div className="flex items-center gap-2 rounded-xl bg-white/5 p-3 border border-white/10">
+                    <Medal size={15} className="text-neutral-300" />
                     <div>
-                      <p className="font-bold text-charcoal dark:text-white text-[11px] truncate">{res.runnerUp}</p>
-                      <p className="text-[9px] text-charcoal-muted dark:text-[#7A7B88]">2nd Place</p>
+                      <p className="font-bold text-white text-[11px] truncate">{res.runnerUp}</p>
+                      <p className="text-[9px] text-neutral-400">2nd Place</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 rounded-xl bg-ivory-warm dark:bg-white/5 p-3 border border-charcoal/8 dark:border-white/8">
-                    <Medal size={15} className="text-coral" />
+                  <div className="flex items-center gap-2 rounded-xl bg-white/5 p-3 border border-white/10">
+                    <Medal size={15} className="text-neutral-400" />
                     <div>
-                      <p className="font-bold text-charcoal dark:text-white text-[11px] truncate">{res.thirdPlace}</p>
-                      <p className="text-[9px] text-charcoal-muted dark:text-[#7A7B88]">3rd Place</p>
+                      <p className="font-bold text-white text-[11px] truncate">{res.thirdPlace}</p>
+                      <p className="text-[9px] text-neutral-400">3rd Place</p>
                     </div>
                   </div>
                 </div>
@@ -129,17 +138,19 @@ export default function ResultsPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-14 text-center glass-card rounded-3xl p-10 space-y-4">
-          <Award size={36} className="text-gold mx-auto" />
-          <h3 className="font-display text-2xl font-bold uppercase text-charcoal dark:text-white">Want Your Team Featured Here?</h3>
-          <p className="text-sm text-charcoal-muted dark:text-[#7A7B88] max-w-md mx-auto">
-            Register for open tournaments today and claim your spot on the official winners leaderboard.
+        <div className="mt-14 text-center glass-card rounded-3xl p-10 space-y-4 border border-white/10">
+          <Award size={36} className="text-white mx-auto" />
+          <h3 className="font-display text-2xl font-bold uppercase text-white">
+            Want Your Team Featured Here?
+          </h3>
+          <p className="text-sm text-neutral-400 max-w-md mx-auto font-medium">
+            Register for open tournaments today, climb the leaderboard, and claim your spot in the official winners hall of fame.
           </p>
           <Link
             to="/tournaments"
-            className="inline-flex items-center gap-2 shimmer-btn rounded-2xl px-7 py-3.5 text-sm font-bold text-white shadow-glow"
+            className="inline-flex items-center gap-2 rounded-2xl px-7 py-3.5 text-xs font-black uppercase tracking-wider bg-white text-black hover:bg-neutral-200 transition-all shadow-glow hover:scale-105 active:scale-95"
           >
-            Register Now <ArrowRight size={15} />
+            Register Team Now <ArrowRight size={15} />
           </Link>
         </div>
       </main>

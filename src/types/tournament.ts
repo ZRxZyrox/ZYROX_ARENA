@@ -7,7 +7,7 @@ export interface FeaturedTournament {
   registrationCloses: Date;
 }
 
-export type RegistrationMode = "solo" | "squad";
+export type RegistrationMode = "solo" | "squad" | "duo";
 export type TournamentStatus = "upcoming" | "reg_open" | "live" | "completed";
 
 export interface TournamentCardData {

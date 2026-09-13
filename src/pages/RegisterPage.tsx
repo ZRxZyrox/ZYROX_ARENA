@@ -179,41 +179,41 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
+    <div className="min-h-screen bg-transparent text-white transition-colors relative">
       <Seo title={`Register — ${tournament.title}`} description="Official team registration portal for Zyrox Arena tournaments." />
       <Header />
 
-      <main className="mx-auto max-w-2xl px-6 py-14">
+      <main className="mx-auto max-w-2xl px-6 py-14 safe-bottom-dock">
         {/* Header */}
-        <div className="mb-8 border-b border-charcoal/10 pb-6">
+        <div className="mb-8 border-b border-white/10 pb-6">
           <div className="flex items-center gap-2">
-            <span className="rounded-full bg-neon/15 border border-neon/30 px-3 py-1 font-mono text-xs font-bold text-neon uppercase">
+            <span className="rounded-full bg-white/10 border border-white/20 px-3 py-1 font-mono text-xs font-bold text-white uppercase">
               {tournament.mode} Tournament
             </span>
-            <span className="font-mono text-xs font-bold text-gold-warm">
+            <span className="font-mono text-xs font-bold text-neutral-300">
               Entry: ₹{tournament.entry_fee} • Prize: {tournament.prize_pool_display}
             </span>
           </div>
-          <h1 className="mt-3 font-display text-3xl md:text-4xl font-bold uppercase text-charcoal">
+          <h1 className="mt-3 font-display text-3xl md:text-4xl font-bold uppercase text-white">
             Register — <span className="text-gradient-warm">{tournament.title}</span>
           </h1>
-          <p className="mt-1.5 text-xs text-charcoal-muted font-medium">
+          <p className="mt-1.5 text-xs text-neutral-400 font-medium">
             Lock in your official tournament slot. Captain must complete team verification.
           </p>
         </div>
 
         {/* Require Sign-in Prompt if Unauthenticated */}
         {!user ? (
-          <div className="glass-card rounded-3xl p-8 md:p-10 text-center space-y-5 border border-neon/30 shadow-glass-xl animate-fade-in">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-neon/15 border border-neon/30 text-neon">
+          <div className="glass-card rounded-3xl p-8 md:p-10 text-center space-y-5 border border-white/20 shadow-glass-xl animate-fade-in">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 border border-white/20 text-white">
               <Lock size={28} />
             </div>
 
             <div>
-              <h2 className="font-display text-2xl font-bold uppercase text-charcoal">
+              <h2 className="font-display text-2xl font-bold uppercase text-white">
                 Account Sign-In Required
               </h2>
-              <p className="mt-2 text-xs text-charcoal-muted max-w-md mx-auto font-medium">
+              <p className="mt-2 text-xs text-neutral-400 max-w-md mx-auto font-medium">
                 To prevent slot spam and ensure anti-cheat account verification, team captains must sign in to their Zyrox Arena account before opening the registration form.
               </p>
             </div>
@@ -222,14 +222,14 @@ export default function RegisterPage() {
               <button
                 type="button"
                 onClick={() => openAuthModal("login")}
-                className="w-full sm:w-auto shimmer-btn rounded-2xl px-8 py-3.5 text-xs font-bold text-white shadow-glow flex items-center justify-center gap-2"
+                className="w-full sm:w-auto rounded-2xl px-8 py-3.5 text-xs font-black uppercase tracking-wider bg-white text-black hover:bg-neutral-200 transition-all shadow-glow flex items-center justify-center gap-2"
               >
                 <LogIn size={15} /> Sign In to Account
               </button>
               <button
                 type="button"
                 onClick={() => openAuthModal("signup")}
-                className="w-full sm:w-auto glass-card rounded-2xl border border-charcoal/10 px-8 py-3.5 text-xs font-bold text-charcoal hover:border-gold transition-colors flex items-center justify-center gap-2"
+                className="w-full sm:w-auto glass-card rounded-2xl border border-white/20 px-8 py-3.5 text-xs font-bold text-white hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
               >
                 <UserCheck size={15} /> Create Free Account
               </button>
@@ -237,34 +237,34 @@ export default function RegisterPage() {
           </div>
         ) : isAlreadyRegistered ? (
           /* Already Applied Notice Card */
-          <div className="glass-card rounded-3xl p-8 md:p-10 text-center space-y-5 border border-neon-mint/30 shadow-glass-xl animate-fade-in">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-neon-mint/15 border border-neon-mint/30 text-neon-mint">
+          <div className="glass-card rounded-3xl p-8 md:p-10 text-center space-y-5 border border-white/20 shadow-glass-xl animate-fade-in">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 border border-white/30 text-white">
               <CheckCircle2 size={32} />
             </div>
 
             <div>
-              <span className="inline-block rounded-full bg-neon-mint/15 border border-neon-mint/30 px-3 py-1 font-mono text-xs font-bold text-neon-mint uppercase mb-2">
+              <span className="inline-block rounded-full bg-white/15 border border-white/30 px-3 py-1 font-mono text-xs font-bold text-white uppercase mb-2">
                 Slot Confirmed ✓
               </span>
-              <h2 className="font-display text-2xl md:text-3xl font-bold uppercase text-charcoal">
+              <h2 className="font-display text-2xl md:text-3xl font-bold uppercase text-white">
                 You Have Already Registered!
               </h2>
-              <p className="mt-2 text-xs text-charcoal-muted max-w-md mx-auto font-medium leading-relaxed">
+              <p className="mt-2 text-xs text-neutral-400 max-w-md mx-auto font-medium leading-relaxed">
                 Our anti-cheat rules enforce a strict 1-slot limit per player / email / phone for each tournament. Your team slot has been confirmed and locked for <strong>{tournament.title}</strong>.
               </p>
             </div>
 
-            <div className="glass-card rounded-2xl p-4 max-w-md mx-auto border border-charcoal/10 text-left text-xs space-y-1 font-mono">
-              <div className="text-charcoal font-bold">Registered Captain: {user.fullName}</div>
-              <div className="text-charcoal-muted">Email: {user.email}</div>
-              <div className="text-gold-warm font-bold">In-Game ID: {user.inGameId}</div>
-              <div className="text-neon font-bold">Status: Payment Verified &amp; Room Credentials Reserved</div>
+            <div className="glass-card rounded-2xl p-4 max-w-md mx-auto border border-white/15 text-left text-xs space-y-1 font-mono">
+              <div className="text-white font-bold">Registered Captain: {user.fullName}</div>
+              <div className="text-neutral-400">Email: {user.email}</div>
+              <div className="text-white font-bold">In-Game ID: {user.inGameId}</div>
+              <div className="text-neutral-200 font-bold">Status: Payment Verified &amp; Room Credentials Reserved</div>
             </div>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to={`/tournaments/${slug || "winter-circuit-finals"}`}
-                className="w-full sm:w-auto shimmer-btn rounded-2xl px-7 py-3 text-xs font-bold text-white shadow-glow flex items-center justify-center gap-2"
+                className="w-full sm:w-auto rounded-2xl px-7 py-3 text-xs font-black uppercase tracking-wider bg-white text-black hover:bg-neutral-200 transition-all shadow-glow flex items-center justify-center gap-2"
               >
                 <Trophy size={15} /> View Tournament Hub
               </Link>
@@ -275,85 +275,85 @@ export default function RegisterPage() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 animate-fade-in">
             
             {/* Logged in User Bar */}
-            <div className="flex items-center justify-between rounded-2xl bg-neon-mint/10 border border-neon-mint/20 px-4 py-3 text-xs font-bold text-charcoal">
+            <div className="flex items-center justify-between rounded-2xl bg-white/10 border border-white/20 px-4 py-3 text-xs font-bold text-white">
               <div className="flex items-center gap-2">
-                <UserCheck size={16} className="text-neon-mint" />
+                <UserCheck size={16} className="text-white" />
                 <span>Signed in as <strong>{user.fullName}</strong> ({user.email})</span>
               </div>
-              <span className="font-mono text-[10px] text-neon-mint uppercase">Verified Captain</span>
+              <span className="font-mono text-[10px] text-white uppercase">Verified Captain</span>
             </div>
 
             {/* Team Name if Squad */}
             {tournament.mode === "squad" && requiredConfig.requireTeamName && (
-              <div className="glass-card rounded-3xl p-6 border border-charcoal/10 space-y-2">
-                <label className="block text-xs font-mono font-bold text-charcoal">Official Team Name *</label>
+              <div className="glass-card rounded-3xl p-6 border border-white/10 space-y-2">
+                <label className="block text-xs font-mono font-bold text-white">Official Team Name *</label>
                 <input
                   type="text"
                   placeholder="e.g. Soul Esports / GodLike Gaming"
                   {...register("teamName")}
-                  className="w-full rounded-2xl border border-charcoal/15 bg-ivory-warm px-4 py-3 text-xs text-charcoal outline-none focus:border-neon font-bold placeholder:text-charcoal-muted/50"
+                  className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-xs text-white outline-none focus:border-white font-bold placeholder:text-neutral-500"
                 />
               </div>
             )}
 
             {/* Captain Information */}
-            <div className="glass-card rounded-3xl p-6 border border-charcoal/10 space-y-4">
-              <h3 className="font-display text-lg font-bold uppercase text-charcoal flex items-center gap-2 border-b border-charcoal/8 pb-3">
-                <ShieldCheck size={18} className="text-neon" /> Captain Roster Information
+            <div className="glass-card rounded-3xl p-6 border border-white/10 space-y-4">
+              <h3 className="font-display text-lg font-bold uppercase text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                <ShieldCheck size={18} className="text-white" /> Captain Roster Information
               </h3>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-mono font-bold text-charcoal mb-1">Captain Full Name *</label>
+                  <label className="block text-xs font-mono font-bold text-white mb-1">Captain Full Name *</label>
                   <input
                     type="text"
                     placeholder="Vikramaditya Singh"
                     {...register("playerName")}
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory-warm px-4 py-2.5 text-xs text-charcoal outline-none focus:border-neon font-medium"
+                    className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white outline-none focus:border-white font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-charcoal mb-1">In-Game Character ID (IGN) *</label>
+                  <label className="block text-xs font-mono font-bold text-white mb-1">In-Game Character ID (IGN) *</label>
                   <input
                     type="text"
                     placeholder="5182940291 (Viper)"
                     {...register("inGameId")}
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory-warm px-4 py-2.5 text-xs text-charcoal outline-none focus:border-neon font-bold text-gold-warm"
+                    className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white outline-none focus:border-white font-bold"
                   />
                 </div>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-mono font-bold text-charcoal mb-1">Email Address *</label>
+                  <label className="block text-xs font-mono font-bold text-white mb-1">Email Address *</label>
                   <input
                     type="email"
                     placeholder="captain@team.gg"
                     {...register("email")}
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory-warm px-4 py-2.5 text-xs text-charcoal outline-none focus:border-neon font-medium"
+                    className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white outline-none focus:border-white font-medium"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono font-bold text-charcoal mb-1">Phone Number (WhatsApp) *</label>
+                  <label className="block text-xs font-mono font-bold text-white mb-1">Phone Number (WhatsApp) *</label>
                   <input
                     type="text"
                     placeholder="+91 9876543210"
                     {...register("phone")}
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory-warm px-4 py-2.5 text-xs text-charcoal outline-none focus:border-neon font-medium"
+                    className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white outline-none focus:border-white font-medium"
                   />
                 </div>
               </div>
 
               {requiredConfig.requireDiscordId && (
                 <div>
-                  <label className="block text-xs font-mono font-bold text-charcoal mb-1">Discord Handle</label>
+                  <label className="block text-xs font-mono font-bold text-white mb-1">Discord Handle</label>
                   <input
                     type="text"
                     placeholder="CaptainViper#1337"
                     {...register("discordId")}
-                    className="w-full rounded-2xl border border-charcoal/15 bg-ivory-warm px-4 py-2.5 text-xs text-charcoal outline-none focus:border-neon font-medium"
+                    className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white outline-none focus:border-white font-medium"
                   />
                 </div>
               )}
@@ -361,15 +361,15 @@ export default function RegisterPage() {
 
             {/* Teammates Roster Section if Required */}
             {tournament.mode === "squad" && requiredConfig.requireTeammates && (
-              <div className="glass-card rounded-3xl p-6 border border-charcoal/10 space-y-4">
-                <div className="flex items-center justify-between border-b border-charcoal/8 pb-3">
-                  <h3 className="font-display text-lg font-bold uppercase text-charcoal flex items-center gap-2">
-                    <Users size={18} className="text-gold" /> Teammate Squad Roster
+              <div className="glass-card rounded-3xl p-6 border border-white/10 space-y-4">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                  <h3 className="font-display text-lg font-bold uppercase text-white flex items-center gap-2">
+                    <Users size={18} className="text-white" /> Teammate Squad Roster
                   </h3>
                   <button
                     type="button"
                     onClick={() => append({ name: "", inGameId: "" })}
-                    className="rounded-xl bg-neon/15 border border-neon/30 px-3 py-1 text-xs font-bold text-neon hover:bg-neon hover:text-white transition-all flex items-center gap-1"
+                    className="rounded-xl bg-white/15 border border-white/30 px-3 py-1 text-xs font-bold text-white hover:bg-white hover:text-black transition-all flex items-center gap-1"
                   >
                     <Plus size={13} /> Add Teammate
                   </button>
@@ -377,13 +377,13 @@ export default function RegisterPage() {
 
                 <div className="space-y-3">
                   {fields.map((field, idx) => (
-                    <div key={field.id} className="grid grid-cols-[1fr_1fr_auto] gap-3 items-center rounded-2xl bg-ivory-warm p-3 border border-charcoal/5">
+                    <div key={field.id} className="grid grid-cols-[1fr_1fr_auto] gap-3 items-center rounded-2xl bg-white/5 p-3 border border-white/5">
                       <div>
                         <input
                           type="text"
                           placeholder={`Player ${idx + 2} Name`}
                           {...register(`teammates.${idx}.name` as const)}
-                          className="w-full rounded-xl border border-charcoal/15 bg-white px-3 py-2 text-xs text-charcoal font-medium outline-none focus:border-neon shadow-sm"
+                          className="w-full rounded-xl border border-white/15 bg-black/40 px-3 py-2 text-xs text-white font-medium outline-none focus:border-white shadow-sm"
                         />
                       </div>
                       <div>
@@ -391,14 +391,14 @@ export default function RegisterPage() {
                           type="text"
                           placeholder={`Player ${idx + 2} In-Game ID`}
                           {...register(`teammates.${idx}.inGameId` as const)}
-                          className="w-full rounded-xl border border-charcoal/15 bg-white px-3 py-2 text-xs text-charcoal font-bold outline-none focus:border-neon shadow-sm"
+                          className="w-full rounded-xl border border-white/15 bg-black/40 px-3 py-2 text-xs text-white font-bold outline-none focus:border-white shadow-sm"
                         />
                       </div>
                       {fields.length > 1 && (
                         <button
                           type="button"
                           onClick={() => remove(idx)}
-                          className="p-2 text-coral hover:bg-coral/10 rounded-xl transition-colors"
+                          className="p-2 text-neutral-400 hover:text-white hover:bg-white/10 rounded-xl transition-colors"
                         >
                           <Trash2 size={15} />
                         </button>
@@ -411,29 +411,29 @@ export default function RegisterPage() {
 
             {/* Error Banner */}
             {error && (
-              <div className="rounded-2xl border border-coral/30 bg-coral/10 p-4 text-xs font-bold text-coral flex items-center gap-2 font-mono">
+              <div className="rounded-2xl border border-white/30 bg-white/10 p-4 text-xs font-bold text-white flex items-center gap-2 font-mono">
                 <AlertCircle size={16} />
                 <span>{error}</span>
               </div>
             )}
 
             {/* Terms Acceptance & Submit */}
-            <div className="glass-card rounded-3xl p-6 border border-charcoal/10 space-y-5">
+            <div className="glass-card rounded-3xl p-6 border border-white/10 space-y-5">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   {...register("acceptTerms")}
-                  className="mt-0.5 h-4 w-4 rounded accent-neon cursor-pointer"
+                  className="mt-0.5 h-4 w-4 rounded accent-white cursor-pointer"
                 />
-                <span className="text-xs text-charcoal-muted font-medium">
-                  I agree to the <Link to="/rules" className="text-neon underline font-bold">Zyrox Arena Fair Play Rules</Link> and confirm that all squad character IDs are accurate. I understand entry fees are non-refundable after slot assignment.
+                <span className="text-xs text-neutral-400 font-medium leading-relaxed">
+                  I agree to the <Link to="/rules" className="text-white underline font-bold">Zyrox Arena Fair Play Rules</Link> and confirm that all squad character IDs are accurate. I understand entry fees are non-refundable after slot assignment.
                 </span>
               </label>
 
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full shimmer-btn rounded-2xl py-4 text-xs font-bold text-white shadow-glow uppercase tracking-wider flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
+                className="w-full rounded-2xl py-4 text-xs font-black uppercase tracking-wider bg-white text-black hover:bg-neutral-200 transition-all shadow-glow flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
               >
                 {submitting ? "Processing Slot Request..." : `Proceed to Pay Entry Fee (₹${tournament.entry_fee}) →`}
               </button>

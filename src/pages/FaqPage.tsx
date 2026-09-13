@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Seo from "@/components/ui/Seo";
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Search, HelpCircle } from "lucide-react";
 
 const FAQ_ITEMS = [
   { category: "Registration", q: "How do I register a squad for a tournament?", a: "Navigate to any active tournament on the website, select Squad format, enter your Team Captain details, add your teammates' full names and exact in-game IDs (IGNs), accept the match rules, and complete payment via Razorpay." },
@@ -29,34 +29,36 @@ export default function FaqPage() {
   });
 
   return (
-    <div className="min-h-screen bg-ivory dark:bg-[#0A0A14] text-charcoal dark:text-[#ECEDF0]">
+    <div className="min-h-screen bg-transparent text-charcoal dark:text-[#ECEDF0] transition-colors relative">
       <Seo
         title="Frequently Asked Questions — ZYROX ARENA"
         description="Find answers to registration, payment verification, match rules, room IDs, and prize payout questions."
       />
       <Header />
 
-      <main className="mx-auto max-w-5xl px-6 py-14">
+      <main className="mx-auto max-w-5xl px-6 py-14 safe-bottom-dock">
         {/* Header */}
-        <div className="mb-12 border-b border-charcoal/8 dark:border-white/8 pb-6 text-center">
-          <p className="font-mono text-xs uppercase text-gold font-bold tracking-widest">Help Center &amp; Support</p>
-          <h1 className="mt-2 font-display text-4xl md:text-5xl font-bold uppercase text-charcoal dark:text-white">
+        <div className="mb-12 border-b border-white/10 pb-6 text-center">
+          <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase text-white font-bold tracking-widest bg-white/10 px-3.5 py-1 rounded-full border border-white/20">
+            <HelpCircle size={13} className="text-white" /> Help Center &amp; Support
+          </span>
+          <h1 className="mt-3 font-display text-4xl md:text-5xl font-bold uppercase text-white">
             Frequently Asked <span className="text-gradient-warm">Questions</span>
           </h1>
-          <p className="mt-2 max-w-md mx-auto text-sm text-charcoal-muted dark:text-[#7A7B88]">
+          <p className="mt-2 max-w-md mx-auto text-sm text-neutral-400 font-medium">
             Everything you need to know about registering, payments, anti-cheat, and match rooms.
           </p>
         </div>
 
         {/* Search Bar */}
         <div className="mb-8 relative max-w-xl mx-auto">
-          <Search className="absolute left-4 top-3.5 text-charcoal-muted" size={18} />
+          <Search className="absolute left-4 top-3.5 text-neutral-400" size={18} />
           <input
             type="text"
             placeholder="Search questions or keywords..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-2xl glass-card pl-11 pr-5 py-3.5 text-sm text-charcoal dark:text-white outline-none focus:border-neon focus:ring-2 focus:ring-neon/20 shadow-glass placeholder:text-charcoal-muted dark:placeholder:text-[#7A7B88]"
+            className="w-full rounded-2xl glass-card pl-11 pr-5 py-3.5 text-sm text-white outline-none focus:border-white focus:ring-2 focus:ring-white/20 shadow-glass placeholder:text-neutral-500 border border-white/15 bg-white/5"
           />
         </div>
 
@@ -68,8 +70,8 @@ export default function FaqPage() {
               onClick={() => setActiveCategory(cat)}
               className={`rounded-full px-4 py-2 text-xs font-bold transition-all ${
                 activeCategory === cat
-                  ? "bg-neon text-white shadow-glow"
-                  : "glass-card text-charcoal-muted dark:text-[#7A7B88] hover:text-charcoal dark:hover:text-white"
+                  ? "bg-white text-black font-black shadow-glow"
+                  : "glass-card text-neutral-400 hover:text-white border border-white/10"
               }`}
             >
               {cat}
@@ -84,26 +86,26 @@ export default function FaqPage() {
             return (
               <div
                 key={idx}
-                className="glass-card rounded-2xl overflow-hidden transition-all shadow-glass hover:shadow-glass-lg"
+                className="glass-card rounded-2xl overflow-hidden transition-all shadow-glass hover:shadow-glass-lg border border-white/10"
               >
                 <button
                   onClick={() => setOpenIdx(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between p-5 text-left text-sm font-bold text-charcoal dark:text-white hover:text-neon transition-colors"
+                  className="w-full flex items-center justify-between p-5 text-left text-sm font-bold text-white hover:text-neutral-300 transition-colors"
                 >
                   <span className="flex items-center gap-3">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-neon/10 text-neon font-mono text-xs">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/15 text-white font-mono text-xs font-bold">
                       ?
                     </span>
-                    {f.q}
+                    <span>{f.q}</span>
                   </span>
                   <ChevronDown
                     size={18}
-                    className={`text-charcoal-muted transition-transform duration-300 ${isOpen ? "rotate-180 text-neon" : ""}`}
+                    className={`text-neutral-400 transition-transform duration-200 ${isOpen ? "rotate-180 text-white" : ""}`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs text-charcoal-muted dark:text-[#7A7B88] leading-relaxed border-t border-charcoal/6 dark:border-white/6">
+                  <div className="px-5 pb-5 pt-1 text-xs text-neutral-400 leading-relaxed border-t border-white/10 font-medium">
                     {f.a}
                   </div>
                 )}
@@ -112,7 +114,7 @@ export default function FaqPage() {
           })}
 
           {filteredFaqs.length === 0 && (
-            <div className="glass-card rounded-2xl p-12 text-center text-charcoal-muted dark:text-[#7A7B88] text-sm">
+            <div className="glass-card rounded-2xl p-12 text-center text-neutral-400 text-sm border border-white/10">
               No questions found matching "{query}". Contact support at zyroxstudioz@gmail.com for assistance.
             </div>
           )}

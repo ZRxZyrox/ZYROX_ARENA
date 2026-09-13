@@ -83,9 +83,14 @@ export function useLiveLeaderboard() {
     saveLeaderboardToStore(sorted);
 
     // Push to Supabase
-    (supabase.from("season_leaderboard") as any)
-      .upsert(sorted)
-      .then(() => {});
+    try {
+      (supabase.from("season_leaderboard") as any)
+        .upsert(sorted)
+        .then(() => {})
+        .catch(() => {});
+    } catch {
+      // ignore
+    }
   };
 
   return { leaderboard, loading, updateLeaderboard };

@@ -5,6 +5,7 @@ import PageLoader from "@/components/ui/PageLoader";
 import PageTransition from "@/components/layout/PageTransition";
 import AuthModal from "@/components/auth/AuthModal";
 import LiquidGlassBottomNav from "@/components/layout/LiquidGlassBottomNav";
+import ArenaBackground from "@/components/layout/ArenaBackground";
 import { logUserActivity } from "@/lib/auditLogger";
 
 // Eagerly import public pages to guarantee instant 1st visit rendering with zero blank screens
@@ -52,6 +53,9 @@ export default function App() {
 
   return (
     <>
+      {/* 120 FPS Hardware-Accelerated Dynamic Arena Background */}
+      {!isAdminRoute && <ArenaBackground />}
+
       <Suspense fallback={<PageLoader />}>
         <AnimatePresence mode="wait">
           <PageTransition key={isAdminRoute ? "admin-root" : location.pathname}>
