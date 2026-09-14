@@ -5,14 +5,14 @@ import Seo from "@/components/ui/Seo";
 import { ChevronDown, Search, HelpCircle } from "lucide-react";
 
 const FAQ_ITEMS = [
-  { category: "Registration", q: "How do I register a squad for a tournament?", a: "Navigate to any active tournament on the website, select Squad format, enter your Team Captain details, add your teammates' full names and exact in-game IDs (IGNs), accept the match rules, and complete payment via Razorpay." },
-  { category: "Payments", q: "How are tournament entry fees and payouts processed?", a: "Entry fees are securely processed using Razorpay PCI-DSS 256-bit encrypted gateway. Prize money payouts are transferred directly to the Team Captain's bank account or UPI ID within 24 hours of tournament finals." },
+  { category: "Registration", q: "How do I register a squad for a tournament?", a: "Navigate to any active tournament on the website, select Squad format, enter your Team Captain details, add your teammates' full names and exact in-game IDs (IGNs), accept the match rules, and complete payment via UPI or Card." },
+  { category: "Payments", q: "How are tournament entry fees and payouts processed?", a: "Entry fees are securely processed using a PCI-DSS 256-bit encrypted gateway. Prize money payouts are transferred directly to the Team Captain's bank account or UPI ID within 24 hours of tournament finals." },
   { category: "Match Rules", q: "Where do I receive the Room ID and Password?", a: "Room ID and Password are sent to your registered Team Captain's WhatsApp phone number and email address 15 minutes before the match start time." },
   { category: "Anti-Cheat", q: "What anti-cheat measures are enforced during matches?", a: "We enforce strict zero-tolerance policies. Emulators are strictly banned in mobile tournaments. Screen recording and device check-ins may be requested by tournament admins at any time." },
   { category: "Refunds", q: "Can I cancel or refund my registration?", a: "As outlined in our 100% Non-Refundable Policy, entry fees are non-refundable once paid to lock in tournament bracket slots. Refunds are issued only if Zyrox Arena cancels an event." },
   { category: "Registration", q: "Can I swap a teammate after registering?", a: "Teammate substitutions are allowed up to 1 hour before match start time by contacting our support team at zyroxstudioz@gmail.com with your Order ID and new IGN details." },
   { category: "Match Rules", q: "What happens if a player disconnects mid-game?", a: "Match disconnects due to personal internet issues will not cause a match restart. If over 50% of players experience a server outage, the match will be re-scheduled by the admin." },
-  { category: "Payments", q: "Is Razorpay payment 100% safe and instant?", a: "Yes, every payment is verified server-side against Razorpay via HMAC-SHA256 signed webhooks directly with Cloudflare Workers — never trusted client-side." },
+  { category: "Payments", q: "Is online payment 100% safe and instant?", a: "Yes, every payment is verified server-side via HMAC-SHA256 signed webhooks directly with Cloudflare Workers — never trusted client-side." },
 ];
 
 export default function FaqPage() {

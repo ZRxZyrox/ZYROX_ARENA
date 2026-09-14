@@ -121,7 +121,7 @@ export default function UserProfileModal({ isOpen, onClose }: Props) {
     ],
     earnings: {
       totalEarned: "₹4,70,000",
-      paidVia: "Razorpay Verified Bank / UPI",
+      paidVia: "Verified Bank / UPI",
       verifiedKyc: true,
       transactionHistory: [
         { id: "tx-1", amount: "₹4,20,000", date: "2026-07-11", status: "Paid" },
@@ -522,7 +522,7 @@ export default function UserProfileModal({ isOpen, onClose }: Props) {
                   <span className="text-[10px] font-mono font-bold text-neutral-400 uppercase">Total Verified Earnings</span>
                   <h3 className="font-display text-3xl font-bold text-white">{userData.earnings?.totalEarned || "₹0"}</h3>
                   <div className="flex items-center gap-1.5 mt-1 text-[11px] text-white font-bold">
-                    <CheckCircle2 size={12} className="text-white" /> Payout Method: {userData.earnings?.paidVia || "Razorpay UPI / Bank"}
+                    <CheckCircle2 size={12} className="text-white" /> Payout Method: {userData.earnings?.paidVia || "UPI / Bank"}
                   </div>
                 </div>
                 <CreditCard size={36} className="text-white flex-shrink-0" />

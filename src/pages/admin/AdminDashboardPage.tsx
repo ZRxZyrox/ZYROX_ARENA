@@ -8,7 +8,7 @@ export default function AdminDashboardPage() {
 
   const stats = [
     { label: "Total Registered Teams", value: "3,214", icon: Users, change: "+14.2% this week", color: "text-neon" },
-    { label: "Revenue Verified", value: "₹41,20,000", icon: IndianRupee, change: "100% Razorpay Verified", color: "text-gold" },
+    { label: "Revenue Verified", value: "₹41,20,000", icon: IndianRupee, change: "100% Gateway Verified", color: "text-gold" },
     { label: "Live Tournaments", value: "6 Active", icon: Trophy, change: "BGMI, Valorant, Free Fire", color: "text-charcoal" },
     { label: "Pending Verification", value: "18 Teams", icon: Clock, change: "Requires manual check", color: "text-coral" },
   ];
@@ -17,7 +17,7 @@ export default function AdminDashboardPage() {
     { type: "registration", text: "Team 'Soul Esports' registered for Winter Circuit Finals", time: "5 mins ago", status: "Paid" },
     { type: "approval", text: "Team 'GodLike' approved for BGMI Showdown Season 4", time: "18 mins ago", status: "Approved" },
     { type: "tournament", text: "Created new tournament 'Free Fire Clash Cup'", time: "1 hour ago", status: "Published" },
-    { type: "payment", text: "Razorpay Webhook verified payment ₹500 for Order #ORD-9821", time: "2 hours ago", status: "Verified" },
+    { type: "payment", text: "Gateway Webhook verified payment ₹500 for Order #ORD-9821", time: "2 hours ago", status: "Verified" },
   ];
 
   return (

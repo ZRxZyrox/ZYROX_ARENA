@@ -77,7 +77,7 @@ export const INITIAL_USERS: UserRecord[] = [
     ],
     earnings: {
       totalEarned: "₹4,70,000",
-      paidVia: "Razorpay UPI (Verified Bank)",
+      paidVia: "UPI (Verified Bank)",
       verifiedKyc: true,
       transactionHistory: [
         { id: "tx-101", amount: "₹4,20,000", date: "2026-07-11", status: "Paid" },
@@ -102,7 +102,7 @@ export const INITIAL_USERS: UserRecord[] = [
     ],
     earnings: {
       totalEarned: "₹1,50,000",
-      paidVia: "Razorpay Netbanking",
+      paidVia: "Instant Netbanking",
       verifiedKyc: true,
       transactionHistory: [
         { id: "tx-103", amount: "₹1,50,000", date: "2026-06-21", status: "Paid" },

@@ -28,8 +28,8 @@ export default function Hero({ featured }: Props) {
     : (featured?.registrationCloses || new Date(Date.now() + 3 * 86400000));
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden">
-      <div className="relative mx-auto max-w-7xl w-full px-6 pt-20 pb-8 grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
+    <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <div className="relative mx-auto max-w-7xl w-full px-6 py-20 grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-16 items-center">
         {/* Left — Text Content with Ancient Royal Typography & Liquid Glass */}
         <div className="space-y-8">
           {/* Announcement badge */}
@@ -156,30 +156,6 @@ export default function Hero({ featured }: Props) {
             </div>
           </div>
         </motion.div>
-      </div>
-
-      {/* Full-width responsive Uiverse card spanning from left to right of website */}
-      <div className="relative mx-auto max-w-7xl w-full px-6 pt-2 pb-12">
-        <div className="uiverse-zyrox-card fps-120 w-full">
-          <b />
-          <div className="card-media flex flex-col items-center justify-center text-white select-none">
-            <span className="font-display text-2xl sm:text-3xl font-black tracking-widest text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.9)]">
-              ZYROX
-            </span>
-            <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] font-bold text-white/70 mt-0.5">
-              STUDIOZ
-            </span>
-          </div>
-          <div className="card-content select-none">
-            <div className="card-title">
-              <span>NEVER SETTLE</span>
-              EVER EVOLVING
-              <div className="text-[9px] sm:text-[10px] text-white/90 font-mono tracking-widest mt-1 font-bold">
-                ZYROX STUDIOZ
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -93,7 +93,7 @@ export default function TermsPage() {
             </h2>
             <div className="space-y-3 text-neutral-300">
               <p>
-                3.1. <strong className="text-white font-bold">Payment Authorization:</strong> All entry fees are securely processed through Razorpay Payments. A registration is only confirmed once the server receives a verified payment webhook.
+                3.1. <strong className="text-white font-bold">Payment Authorization:</strong> All entry fees are securely processed through an encrypted payment gateway. A registration is only confirmed once the server receives a verified payment webhook.
               </p>
               <p>
                 3.2. <strong className="text-white font-bold">100% Non-Refundable Entry Commitment:</strong> Tournament entry fees are strictly non-refundable once paid to lock in bracket slots. Refer to our Refund Policy for full details.

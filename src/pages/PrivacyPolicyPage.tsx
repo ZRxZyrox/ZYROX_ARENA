@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
                   <strong className="text-white font-bold">Gaming Identifiers:</strong> In-Game Name (IGN), In-Game Character ID/UID, Discord handle, team name, and team roster details.
                 </li>
                 <li>
-                  <strong className="text-white font-bold">Payment Data:</strong> Transaction IDs, order numbers, and payment status via Razorpay Payments. <em className="text-neutral-400">Note: Zyrox Arena NEVER stores credit/debit card numbers or bank PINs on our servers. All sensitive financial data is processed securely through Razorpay's PCI-DSS compliant infrastructure.</em>
+                  <strong className="text-white font-bold">Payment Data:</strong> Transaction IDs, order numbers, and payment status via secure payment gateway. <em className="text-neutral-400">Note: Zyrox Arena NEVER stores credit/debit card numbers or bank PINs on our servers. All sensitive financial data is processed securely through PCI-DSS compliant infrastructure.</em>
                 </li>
                 <li>
                   <strong className="text-white font-bold">Technical Data:</strong> IP address, device type, browser session metadata, and anti-cheat submission logs.
@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
                 Zyrox Arena <strong className="text-white font-bold">NEVER sells, rents, or trades your personal data</strong> to third-party advertisers. We only share necessary data with trusted processors:
               </p>
               <ul className="ml-5 list-disc space-y-2 text-neutral-300">
-                <li><strong className="text-white font-bold">Payment Gateway:</strong> Razorpay Payments processes transaction status callbacks securely.</li>
+                <li><strong className="text-white font-bold">Payment Gateway:</strong> Authorized payment gateways process transaction status callbacks securely.</li>
                 <li><strong className="text-charcoal dark:text-white font-bold">Database &amp; Cloud:</strong> Supabase and Cloudflare Workers maintain backend infrastructure under strict confidentiality.</li>
               </ul>
             </div>

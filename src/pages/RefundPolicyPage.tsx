@@ -86,7 +86,7 @@ export default function RefundPolicyPage() {
             </h2>
             <div className="space-y-3 text-neutral-300">
               <p>
-                Eligible refunds are processed directly via Razorpay Payments back to your original source (UPI, GPay, Bank Account, or Card).
+                Eligible refunds are processed directly back to your original source (UPI, GPay, Bank Account, or Card).
               </p>
               <p>
                 Refund processing typically completes within <strong className="text-white font-bold font-mono">5 to 7 business days</strong> depending on your bank's processing timelines.

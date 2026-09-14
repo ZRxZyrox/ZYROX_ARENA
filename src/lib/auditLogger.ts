@@ -49,7 +49,7 @@ export const DEFAULT_AUDIT_LOGS: AuditLogItem[] = [
     ip_address: "103.21.124.81",
     created_at: new Date(Date.now() - 1200000).toISOString(),
     user_email: "arjun.captain@zyrox.gg",
-    details: "Initialized Razorpay slot entry checkout for ₹250",
+    details: "Initialized slot entry checkout for ₹250",
   },
   {
     id: "log-104",

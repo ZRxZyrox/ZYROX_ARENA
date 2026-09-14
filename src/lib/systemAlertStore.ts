@@ -26,9 +26,9 @@ export const INITIAL_SYSTEM_ALERTS: SystemAlert[] = [
   {
     id: "alert-102",
     severity: "info",
-    title: "Razorpay Payment Gateway Sync",
+    title: "Payment Gateway Sync",
     message: "256-Bit SSL webhook listener active and receiving slot entry transactions.",
-    source: "Razorpay API",
+    source: "Payment Gateway API",
     timestamp: new Date(Date.now() - 3600000).toISOString(),
     status: "resolved",
   },

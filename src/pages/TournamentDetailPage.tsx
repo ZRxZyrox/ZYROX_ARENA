@@ -177,7 +177,7 @@ export default function TournamentDetailPage() {
                     <Trophy size={18} className="text-white" /> Direct Cash Payouts
                   </div>
                   <p className="text-xs text-neutral-400 leading-relaxed">
-                    Prizes transferred directly via Razorpay UPI/Bank Transfer within 24 hours of finals completion.
+                    Prizes transferred directly via Verified UPI/Bank Transfer within 24 hours of finals completion.
                   </p>
                 </div>
                 <div className="glass-card rounded-3xl p-6 space-y-2.5 border border-white/10">
@@ -326,7 +326,7 @@ export default function TournamentDetailPage() {
                 <div className="glass-card rounded-2xl p-5 space-y-1.5 border border-charcoal/8 dark:border-white/10">
                   <h4 className="font-bold text-charcoal dark:text-white text-sm">How is the prize money transferred?</h4>
                   <p className="text-charcoal-muted dark:text-[#9A9BA8] leading-relaxed">
-                    Prize funds are transferred directly via Razorpay UPI or bank transfer to the winning Captain's account within 24 hours of match conclusion.
+                    Prize funds are transferred directly via Instant UPI or bank transfer to the winning Captain's account within 24 hours of match conclusion.
                   </p>
                 </div>
               </div>

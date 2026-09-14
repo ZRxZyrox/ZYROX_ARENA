@@ -105,7 +105,7 @@ export default function Footer() {
                 <span className="text-white font-bold">✓</span> Admin Decision Final in All Matches
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-white font-bold">✓</span> Razorpay PCI-DSS 256-Bit Encrypted
+                <span className="text-white font-bold">✓</span> PCI-DSS 256-Bit Encrypted Gateway
               </li>
             </ul>
           </div>

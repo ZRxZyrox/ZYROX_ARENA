@@ -85,7 +85,7 @@ const HOW_IT_WORKS = [
   {
     step: "02",
     title: "Instant Entry",
-    desc: "Secure UPI & card checkout via Razorpay.",
+    desc: "Secure instant UPI & card checkout.",
   },
   {
     step: "03",
@@ -179,6 +179,30 @@ export default function HomePage() {
                   </div>
                 );
               })}
+            </div>
+
+            {/* ═══════════════ Uiverse Daniel1227k Interactive Hover Card ═══════════════ */}
+            <div className="mt-8">
+              <div className="uiverse-zyrox-card fps-120 w-full">
+                <b />
+                <div className="card-media flex flex-col items-center justify-center text-white select-none">
+                  <span className="font-display text-2xl sm:text-3xl font-black tracking-widest text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.9)]">
+                    ZYROX
+                  </span>
+                  <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] font-bold text-white/70 mt-0.5">
+                    STUDIOZ
+                  </span>
+                </div>
+                <div className="card-content select-none">
+                  <div className="card-title">
+                    <span>NEVER SETTLE</span>
+                    EVER EVOLVING
+                    <div className="text-[9px] sm:text-[10px] text-white/90 font-mono tracking-widest mt-1 font-bold">
+                      ZYROX STUDIOZ
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
