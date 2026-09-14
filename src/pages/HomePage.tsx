@@ -5,6 +5,8 @@ import Seo from "@/components/ui/Seo";
 import Hero from "@/components/home/Hero";
 import { useLiveTournaments } from "@/lib/tournamentStore";
 import { useLiveLeaderboard } from "@/lib/leaderboardStore";
+import { useLiveReviews } from "@/lib/reviewStore";
+import { useSiteSettings } from "@/lib/siteSettingsStore";
 import { subscribeNewsletter } from "@/lib/newsletterStore";
 import type { FeaturedTournament } from "@/types/tournament";
 import {
@@ -22,86 +24,11 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-const HARDCODED_REVIEWS = [
-  {
-    id: "rev-1",
-    name: "Arjun Sharma",
-    role: "IGL — Team Soul Esports",
-    quote: "ZYROX ARENA has set a new standard for Indian esports. Zero ping latency, instant slot allotment, and prize money in my UPI account within 2 hours of winning.",
-    rating: 5,
-  },
-  {
-    id: "rev-2",
-    name: "Priya Menon",
-    role: "Captain — Valkyrie Ops",
-    quote: "The emulator detection is ironclad. In other tourneys we faced closet cheaters, but here the referee panel and live check-ins guarantee a genuinely fair fight.",
-    rating: 5,
-  },
-  {
-    id: "rev-3",
-    name: "Rohan Verma",
-    role: "Solo Fragger — Free Fire Max",
-    quote: "Fastest tournament registration I've ever experienced. Room ID & password delivered right to the screen 15 minutes before drop. Flawless management.",
-    rating: 5,
-  },
-  {
-    id: "rev-4",
-    name: "Vikram Rathore",
-    role: "Sniper — Valorant Vanguard",
-    quote: "Transparent brackets, strict anti-cheat, and prompt support on Discord. Zyrox Studioz is truly elevating the competitive gaming ecosystem in India.",
-    rating: 5,
-  },
-];
-
-const WHY_FEATURES = [
-  {
-    icon: ShieldCheck,
-    title: "Anti-Cheat Shield",
-    desc: "Live hardware check-ins & emulator bans.",
-  },
-  {
-    icon: CreditCard,
-    title: "Instant Payouts",
-    desc: "Direct UPI & bank transfers within 24 hours.",
-  },
-  {
-    icon: Zap,
-    title: "Live Brackets",
-    desc: "Instant room credentials & automated scores.",
-  },
-  {
-    icon: Users,
-    title: "Verified Rosters",
-    desc: "Validated player IGNs & captain check-in.",
-  },
-];
-
-const HOW_IT_WORKS = [
-  {
-    step: "01",
-    title: "Pick Event",
-    desc: "Choose title, mode & squad roster.",
-  },
-  {
-    step: "02",
-    title: "Instant Entry",
-    desc: "Secure instant UPI & card checkout.",
-  },
-  {
-    step: "03",
-    title: "Get Room Pass",
-    desc: "Private room ID & password 15m prior.",
-  },
-  {
-    step: "04",
-    title: "Win Cash",
-    desc: "Dominate bracket & get paid directly.",
-  },
-];
-
 export default function HomePage() {
   const { publishedTournaments } = useLiveTournaments();
   const { leaderboard } = useLiveLeaderboard();
+  const { reviews } = useLiveReviews();
+  const { settings } = useSiteSettings();
 
   const [subscribeEmail, setSubscribeEmail] = useState("");
   const [subscribeFeedback, setSubscribeFeedback] = useState<string | null>(null);
@@ -124,32 +51,53 @@ export default function HomePage() {
       game: "Valorant",
       format: "5v5 Squad",
       prizePool: "₹2,00,000",
-      registrationCloses: new Date(Date.now() + 2 * 86400000 + 14 * 3600000),
+      registrationCloses: new Date(Date.now() + 3 * 86400000),
     };
   }, [publishedTournaments]);
 
   const handleSubscribeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const res = subscribeNewsletter(subscribeEmail);
-    setSubscribeFeedback(res.message);
-    if (res.success) setSubscribeEmail("");
-    setTimeout(() => setSubscribeFeedback(null), 4000);
+    if (!subscribeEmail.trim() || !subscribeEmail.includes("@")) {
+      setSubscribeFeedback("Please enter a valid email address.");
+      return;
+    }
+
+    const result = subscribeNewsletter(subscribeEmail.trim());
+    setSubscribeFeedback(result.message);
+    if (result.success) {
+      setSubscribeEmail("");
+      setTimeout(() => setSubscribeFeedback(null), 4000);
+    }
+  };
+
+  const getGuaranteeIcon = (iconName: string) => {
+    switch (iconName) {
+      case "CreditCard":
+        return CreditCard;
+      case "Zap":
+        return Zap;
+      case "Users":
+        return Users;
+      case "ShieldCheck":
+      default:
+        return ShieldCheck;
+    }
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-charcoal dark:text-[#ECEDF0] transition-colors relative">
+    <div className="min-h-screen bg-transparent text-white transition-colors relative overflow-x-hidden">
       <Seo
-        title="ZYROX ARENA — High-Stakes Esports Tournaments"
-        description="India's premier competitive gaming arena. Compete in BGMI, Free Fire, Valorant, FC, and Cricket for verified cash prizes."
+        title="ZYROX ARENA — Ancient Esports Tournament Sanctum"
+        description="Compete in high-stakes esports tournaments across BGMI, Free Fire, Valorant, FC, and Cricket with verified cash prize pools and 24-hour payouts."
       />
       <Header />
 
       <main className="safe-bottom-dock">
-        {/* Hero Section */}
+        {/* ═══════════════ Hero Section ═══════════════ */}
         <Hero featured={featured} />
 
-        {/* ═══════════════ Why ZYROX ARENA ═══════════════ */}
-        <section className="py-14">
+        {/* ═══════════════ Platform Guarantees ("Why ZYROX ARENA") ═══════════════ */}
+        <section className="py-14 border-t border-white/10">
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center mb-10">
               <span className="inline-block font-mono text-[10px] uppercase text-neutral-300 font-bold tracking-wider bg-white/10 px-3 py-1 rounded-full border border-white/20">
@@ -160,11 +108,11 @@ export default function HomePage() {
               </h2>
             </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {WHY_FEATURES.map((f) => {
-                const Icon = f.icon;
+              {(settings.guarantees || []).map((f) => {
+                const Icon = getGuaranteeIcon(f.iconName);
                 return (
                   <div
-                    key={f.title}
+                    key={f.id || f.title}
                     className="glass-card rounded-2xl p-5 space-y-3 group border border-white/15 fps-120 hover:border-white/35 transition-all"
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 border border-white/20 shadow-glass">
@@ -219,7 +167,7 @@ export default function HomePage() {
               </h2>
             </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {HOW_IT_WORKS.map((step) => (
+              {(settings.howItWorks || []).map((step) => (
                 <div
                   key={step.step}
                   className="glass-card rounded-2xl p-5 relative overflow-hidden group border border-white/15 fps-120 hover:border-white/35 transition-all"
@@ -282,7 +230,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ═══════════════ Testimonials ═══════════════ */}
+        {/* ═══════════════ Dynamic Player Reviews & Testimonials ═══════════════ */}
         <section className="py-14">
           <div className="mx-auto max-w-7xl px-6">
             <div className="text-center mb-10">
@@ -294,7 +242,7 @@ export default function HomePage() {
               </h2>
             </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {HARDCODED_REVIEWS.map((t) => (
+              {reviews.map((t) => (
                 <div
                   key={t.id || t.name}
                   className="glass-card rounded-2xl p-5 space-y-3 border border-white/15 fps-120 hover:border-white/35 transition-all"
@@ -334,22 +282,25 @@ export default function HomePage() {
             </div>
             <div className="grid gap-5 sm:grid-cols-3">
               {[
-                { icon: MessageCircle, label: "Discord", desc: "5,000+ gamers, scrims & squad LFTs." },
-                { icon: Instagram, label: "Instagram", desc: "Tournament highlights & winner drops." },
-                { icon: Youtube, label: "YouTube", desc: "Grand finals streams & match VODs." },
+                { icon: MessageCircle, label: "Discord", desc: "Join 5,000+ gamers, scrims & squad LFTs.", url: settings.discordUrl },
+                { icon: Instagram, label: "Instagram", desc: "Tournament highlights & winner drops.", url: settings.instagramUrl },
+                { icon: Youtube, label: "YouTube", desc: "Grand finals streams & match VODs.", url: settings.youtubeUrl },
               ].map((s) => {
                 const Icon = s.icon;
                 return (
-                  <div
+                  <a
                     key={s.label}
-                    className="glass-card rounded-2xl p-5 group cursor-pointer hover:border-white/40 transition-all border border-white/15 fps-120"
+                    href={s.url || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-card rounded-2xl p-5 group cursor-pointer hover:border-white/40 transition-all border border-white/15 fps-120 block"
                   >
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 border border-white/20 shadow-glass">
                       <Icon size={20} className="text-white" />
                     </span>
                     <h3 className="mt-3 font-display text-sm font-bold text-white">{s.label}</h3>
                     <p className="mt-1 text-xs text-neutral-400">{s.desc}</p>
-                  </div>
+                  </a>
                 );
               })}
             </div>
@@ -378,16 +329,20 @@ export default function HomePage() {
                     value={subscribeEmail}
                     onChange={(e) => setSubscribeEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="flex-1 rounded-full bg-white/5 border border-white/15 px-4 py-2.5 text-xs text-white outline-none focus:border-white focus:ring-1 focus:ring-white/20 placeholder:text-neutral-500"
+                    className="flex-1 rounded-2xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs text-white placeholder:text-neutral-500 outline-none focus:border-white/40 font-medium"
                   />
-                  <button type="submit" className="royal-btn royal-btn-primary px-6 py-2.5 text-xs font-bold flex items-center justify-center gap-1.5">
-                    <Send size={13} /> Subscribe
+                  <button
+                    type="submit"
+                    className="royal-btn royal-btn-primary px-6 py-2.5 text-xs font-bold flex items-center justify-center gap-1.5"
+                  >
+                    <span>Subscribe</span>
+                    <Send size={13} />
                   </button>
                 </div>
                 {subscribeFeedback && (
-                  <div className="rounded-full bg-white/10 border border-white/30 px-4 py-1.5 text-[11px] font-bold text-white flex items-center justify-center gap-1.5">
+                  <p className="text-xs font-bold text-white flex items-center justify-center gap-1">
                     <CheckCircle2 size={13} /> {subscribeFeedback}
-                  </div>
+                  </p>
                 )}
               </form>
             </div>

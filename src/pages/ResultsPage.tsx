@@ -4,54 +4,10 @@ import Seo from "@/components/ui/Seo";
 import { Trophy, Award, CheckCircle2, Medal, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const PAST_RESULTS = [
-  {
-    id: "1",
-    title: "Valorant Winter Circuit Finals 2026",
-    game: "Valorant",
-    prizePool: "₹2,00,000",
-    winner: "Team Soul Esports",
-    runnerUp: "GodLike Official",
-    thirdPlace: "Reckoning Esports",
-    date: "Jan 20, 2026",
-    status: "Payout Complete",
-  },
-  {
-    id: "2",
-    title: "BGMI Showdown Season 3",
-    game: "BGMI",
-    prizePool: "₹1,50,000",
-    winner: "Blind Esports",
-    runnerUp: "Entity Gaming",
-    thirdPlace: "Team XSpark",
-    date: "Jan 12, 2026",
-    status: "Payout Complete",
-  },
-  {
-    id: "3",
-    title: "Free Fire Clash Cup Season 2",
-    game: "Free Fire",
-    prizePool: "₹1,00,000",
-    winner: "Orangutan Gaming",
-    runnerUp: "Chemin Esports",
-    thirdPlace: "TSM India",
-    date: "Dec 28, 2025",
-    status: "Payout Complete",
-  },
-  {
-    id: "4",
-    title: "FC Pro League Masters",
-    game: "FC",
-    prizePool: "₹75,000",
-    winner: "Charanjot Singh",
-    runnerUp: "Sarangaj",
-    thirdPlace: "Siddh Chandarana",
-    date: "Dec 15, 2025",
-    status: "Payout Complete",
-  },
-];
+import { useLiveResults } from "@/lib/resultsStore";
 
 export default function ResultsPage() {
+  const { results } = useLiveResults();
   return (
     <div className="min-h-screen bg-transparent text-charcoal dark:text-[#ECEDF0] transition-colors relative">
       <Seo
@@ -76,7 +32,7 @@ export default function ResultsPage() {
 
         {/* Winner Highlights Grid */}
         <div className="grid gap-6 md:grid-cols-2">
-          {PAST_RESULTS.map((res) => (
+          {results.map((res) => (
             <div
               key={res.id}
               className="glass-card rounded-3xl p-7 space-y-5 hover:shadow-glass-lg transition-all border border-white/10"

@@ -2,17 +2,11 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Seo from "@/components/ui/Seo";
 import { Camera, Sparkles } from "lucide-react";
-
-const GALLERY_ITEMS = [
-  { id: "1", title: "Valorant Winter Finals Stage", category: "Grand Finals", game: "Valorant", imageBg: "from-white/15 to-white/5" },
-  { id: "2", title: "BGMI Showdown Champion Ceremony", category: "Trophy Moment", game: "BGMI", imageBg: "from-white/10 to-white/5" },
-  { id: "3", title: "Free Fire Clash Cup Action", category: "Match Highlights", game: "Free Fire", imageBg: "from-white/15 to-white/5" },
-  { id: "4", title: "FC Pro League 1v1 Clutch", category: "Key Plays", game: "FC", imageBg: "from-white/10 to-white/5" },
-  { id: "5", title: "Lan Arena Setup & Player Lounge", category: "Event Vibe", game: "Esports", imageBg: "from-white/15 to-white/5" },
-  { id: "6", title: "Grand Finals Trophy Unveiling", category: "Behind The Scenes", game: "Esports", imageBg: "from-white/10 to-white/5" },
-];
+import { useLiveGallery } from "@/lib/galleryStore";
 
 export default function GalleryPage() {
+  const { galleryItems } = useLiveGallery();
+
   return (
     <div className="min-h-screen bg-transparent text-white transition-colors relative">
       <Seo
@@ -36,12 +30,12 @@ export default function GalleryPage() {
 
         {/* Gallery Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {GALLERY_ITEMS.map((item) => (
+          {galleryItems.map((item) => (
             <div
               key={item.id}
               className="glass-card rounded-3xl overflow-hidden p-0 group hover:shadow-glass-lg transition-all cursor-pointer border border-white/10 fps-120"
             >
-              <div className={`h-56 bg-gradient-to-br ${item.imageBg} p-6 flex flex-col justify-between border-b border-white/10 relative overflow-hidden`}>
+              <div className={`h-56 bg-gradient-to-br ${item.imageBg || "from-white/15 to-white/5"} p-6 flex flex-col justify-between border-b border-white/10 relative overflow-hidden`}>
                 <div className="flex items-center justify-between">
                   <span className="rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-3 py-1 font-mono text-[10px] font-bold uppercase text-white shadow-glass">
                     {item.category}
@@ -58,7 +52,7 @@ export default function GalleryPage() {
                 </div>
 
                 <span className="text-[10px] font-mono text-neutral-400 uppercase font-bold">
-                  HD Media Asset #{item.id}
+                  Official Match Highlight
                 </span>
               </div>
 

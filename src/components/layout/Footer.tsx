@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import { ShieldCheck, Gavel, Ban, FileText, Swords, Award, Mail } from "lucide-react";
 
+import { useSiteSettings } from "@/lib/siteSettingsStore";
+
 export default function Footer() {
+  const { settings } = useSiteSettings();
+  const supportEmail = settings.supportEmail || "zyroxstudioz@gmail.com";
+
   return (
     <footer className="border-t border-white/10 bg-black/85 backdrop-blur-xl pt-16 pb-28 sm:pb-32 text-neutral-400">
       <div className="mx-auto max-w-7xl px-6">
@@ -26,7 +31,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 text-neutral-400">
                 <Mail size={15} className="text-white" />
-                <a href="mailto:zyroxstudioz@gmail.com" className="hover:text-white underline">zyroxstudioz@gmail.com</a>
+                <a href={`mailto:${supportEmail}`} className="hover:text-white underline">{supportEmail}</a>
               </div>
             </div>
           </div>

@@ -39,6 +39,9 @@ const AdminCouponsPage = lazy(() => import("@/pages/admin/AdminCouponsPage"));
 const AdminNotifyUsersPage = lazy(() => import("@/pages/admin/AdminNotifyUsersPage"));
 const AdminLeaderboardPage = lazy(() => import("@/pages/admin/AdminLeaderboardPage"));
 const AdminReviewsPage = lazy(() => import("@/pages/admin/AdminReviewsPage"));
+const AdminResultsPage = lazy(() => import("@/pages/admin/AdminResultsPage"));
+const AdminGalleryPage = lazy(() => import("@/pages/admin/AdminGalleryPage"));
+const AdminFaqPage = lazy(() => import("@/pages/admin/AdminFaqPage"));
 const AdminSettingsPage = lazy(() => import("@/pages/admin/AdminSettingsPage"));
 const AdminAuditLogPage = lazy(() => import("@/pages/admin/AdminAuditLogPage"));
 
@@ -95,6 +98,9 @@ export default function App() {
                 <Route path="coupons" element={<AdminCouponsPage />} />
                 <Route path="notify-users" element={<AdminNotifyUsersPage />} />
                 <Route path="leaderboard" element={<AdminLeaderboardPage />} />
+                <Route path="results" element={<AdminResultsPage />} />
+                <Route path="gallery" element={<AdminGalleryPage />} />
+                <Route path="faqs" element={<AdminFaqPage />} />
                 <Route path="reviews" element={<AdminReviewsPage />} />
                 <Route path="settings" element={<AdminSettingsPage />} />
                 <Route path="audit-log" element={<AdminAuditLogPage />} />

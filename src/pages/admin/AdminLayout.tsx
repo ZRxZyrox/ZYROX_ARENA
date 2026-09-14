@@ -2,7 +2,7 @@ import { NavLink, Outlet, Link } from "react-router-dom";
 import { Suspense } from "react";
 import PageLoader from "@/components/ui/PageLoader";
 import { adminApi } from "@/lib/admin-api";
-import { LayoutDashboard, Swords, Users, MessageSquare, Sliders, ShieldAlert, LogOut, ExternalLink, ShieldCheck, Layers, Mail, UserCheck, Award, Ticket } from "lucide-react";
+import { LayoutDashboard, Swords, Users, MessageSquare, Sliders, ShieldAlert, LogOut, ExternalLink, ShieldCheck, Layers, Mail, UserCheck, Award, Ticket, Trophy, Camera, HelpCircle } from "lucide-react";
 
 const ADMIN_PATH = import.meta.env.VITE_ADMIN_PATH || "control-panel-dev";
 
@@ -11,12 +11,15 @@ const NAV = [
   { label: "Hero Box & Banner", to: `/${ADMIN_PATH}/hero-box`, icon: Layers, exact: false },
   { label: "Tournaments & Games", to: `/${ADMIN_PATH}/tournaments`, icon: Swords, exact: false },
   { label: "Team Registrations", to: `/${ADMIN_PATH}/registrations`, icon: Users, exact: false },
+  { label: "Tournament Results", to: `/${ADMIN_PATH}/results`, icon: Trophy, exact: false },
+  { label: "Leaderboard Manager", to: `/${ADMIN_PATH}/leaderboard`, icon: Award, exact: false },
+  { label: "Event Gallery", to: `/${ADMIN_PATH}/gallery`, icon: Camera, exact: false },
+  { label: "FAQ & Help Desk", to: `/${ADMIN_PATH}/faqs`, icon: HelpCircle, exact: false },
+  { label: "Website Reviews", to: `/${ADMIN_PATH}/reviews`, icon: MessageSquare, exact: false },
   { label: "Registered Users & Bans", to: `/${ADMIN_PATH}/users`, icon: UserCheck, exact: false },
   { label: "Coupons & Vouchers", to: `/${ADMIN_PATH}/coupons`, icon: Ticket, exact: false },
   { label: "Notify Users", to: `/${ADMIN_PATH}/notify-users`, icon: Mail, exact: false },
-  { label: "Leaderboard Manager", to: `/${ADMIN_PATH}/leaderboard`, icon: Award, exact: false },
-  { label: "Website Reviews", to: `/${ADMIN_PATH}/reviews`, icon: MessageSquare, exact: false },
-  { label: "Site Settings & Ticker", to: `/${ADMIN_PATH}/settings`, icon: Sliders, exact: false },
+  { label: "Site Settings & Content", to: `/${ADMIN_PATH}/settings`, icon: Sliders, exact: false },
   { label: "Security Audit Log", to: `/${ADMIN_PATH}/audit-log`, icon: ShieldAlert, exact: false },
 ];
 
